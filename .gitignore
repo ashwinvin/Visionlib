@@ -1,2 +1,6 @@
 __pycache__/*
 *.pyc
+visionlib.egg-info
+build 
+dist
+
