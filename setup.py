@@ -4,7 +4,7 @@ with open("README.md", "r") as rd:
     long_description = rd.read()
 
 setuptools.setup(
-    name="tunnel_vision",
+    name="visionlib",
     version="0.6",
     author="Ashwin Vinod",
     author_email="ashwinvinodsa@gmail.com",
