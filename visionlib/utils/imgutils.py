@@ -29,3 +29,11 @@ class Image:
             return self.frame
         else:
             return None
+
+    def read_video(self, video_path, webcam=None):
+        file_exists = os.path.exists(video_path)
+        if file_exists is True:
+            video = cv2.VideoCapture(video_path)
+            return video
+        else:
+            return None
