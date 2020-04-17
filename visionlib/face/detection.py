@@ -1,5 +1,6 @@
 import cv2
 import os
+
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 from ..utils.imgutils import Image
 from .haar_detector import HaarDetector
@@ -24,52 +25,28 @@ class Detector:
         elif detector == "mtcnn":
             self.detector = self.mtcnn
 
-    def detect_face(self, img_path=None, webcam=False, video_path=None, show=False):
-
-        if webcam is not False:
-            web_vid = cv2.VideoCapture(0)
-            box_lst = []
-            while True:
-                status, frame = web_vid.read()
-                box = self.detector.detect(img=frame)
-                box_lst.append(box)
+    def detect_face(self, img_path=None, img=None):
+        if img is not None:
+            # frame =
+            box = self.detector.detect(img=img)
+            frame = None
+            if box is not None:
                 for face in box:
                     frame = cv2.rectangle(
-                        frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
+                        img, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
                     )
-
-                if show is True:
-                    cv2.imshow("Smart Eye", frame)
-                    cv2.waitKey(0)
-                else:
-                    yield box_lst
-
-        elif video_path is not None:
-            video = self.image_util.read_video(video_path)
-            box_lst = []
-            while True:
-                status, frame = video.read()
-                box = self.detector.detect(img=frame)
-                box_lst.append(box)
-                for face in box:
-                    frame = cv2.rectangle(
-                        frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
-                    )
-
-                if show is True:
-                    cv2.imshow("Smart Eye", frame)
-                    cv2.waitKey(0)
-                else:
-                    yield box_lst
+            return img if (frame is None) else frame
 
         elif img_path is not None:
             frame = self.image_util.read_img(img_path)
             box = self.detector.detect(img=frame)
-            for face in box:
-                frame = cv2.rectangle(
-                    frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
-                )
-            return box
+            if box is not None:
+                for face in box:
+                    frame = cv2.rectangle(
+                        frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
+                    )
+                    print("frame2: ", frame)
+            return img if (frame is None) else frame
 
         else:
             raise Exception("No Arguments given")
