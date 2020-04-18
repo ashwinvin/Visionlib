@@ -15,6 +15,11 @@ class Image:
         c_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         return c_frame
 
+    def resize(self, frame, x, y):
+        r_frame = cv2.resize(frame, dsize=(x, y),
+                             interpolation=cv2.INTER_AREA)
+        return r_frame
+
     def crop(self, img, cords):
         arr_img = np.asarray(img)
         crop_image = arr_img[

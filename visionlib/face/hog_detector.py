@@ -23,6 +23,7 @@ class Hog_detector:
         if d_img is None:
             raise Exception("Provided Path {0} is invaild ".format(img))
         else:
+            d_img = self.image_util.resize(d_img, 600, 300)
             detected_img = self._dlib_hog_model(d_img, 1)
             box_lst = []
             for face in detected_img:
@@ -31,4 +32,4 @@ class Hog_detector:
                 w = face.right()
                 h = face.bottom()
                 box_lst.append([x, y, w, h])
-            return box_lst
+            return d_img, box_lst

@@ -82,11 +82,11 @@ class Detector:
         """
 
         if img is not None:
-            box = self.detector.detect(img=img)
+            d_frame, box = self.detector.detect(img=img)
             frame = None
             if box is not None:
                 for face in box:
-                    frame = cv2.rectangle(
+                    d_frame = cv2.rectangle(
                         img, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
                     )
 
@@ -99,11 +99,11 @@ class Detector:
 
         elif img_path is not None and video is False:
             frame = self.image_util.read_img(img_path)
-            box = self.detector.detect(img=frame)
+            d_frame, box = self.detector.detect(img=frame)
             if box is not None:
                 for face in box:
                     frame = cv2.rectangle(
-                        frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
+                        d_frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
                     )
 
             if show is True:
@@ -117,11 +117,11 @@ class Detector:
             vid = self.image_util.read_video(img_path)
             while True:
                 status, frame = vid.read()
-                box = self.detector.detect(img=frame)
+                d_frame, box = self.detector.detect(img=frame)
                 if box is not None:
                     for face in box:
                         frame = cv2.rectangle(
-                            frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
+                            d_frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
                         )
 
                 if show is True:
