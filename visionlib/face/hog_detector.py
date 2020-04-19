@@ -32,4 +32,4 @@ class Hog_detector:
                 w = face.right()
                 h = face.bottom()
                 box_lst.append([x, y, w, h])
-            return d_img, box_lst
+            return box_lst

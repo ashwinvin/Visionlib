@@ -34,4 +34,4 @@ class HaarDetector:
                 w = x + w
                 h = y + h
                 box_lst.append([x, y, w, h])
-                return h_img, box_lst
+                return box_lst

@@ -31,4 +31,4 @@ class MTCNNDetector(object):
                 w = face["box"][2]
                 h = face["box"][3]
                 box_lst.append([x, y, w + x, h + y])
-            return m_img, box_lst
+            return box_lst
