@@ -17,9 +17,9 @@ class HaarDetector:
             img_path: Path to the image for detection
 
         Returns:
-            A tuple containg 4 lists which correspond
-            to x, y, w, h of bounding box respectively.
-
+                box_lst : A list of list
+                    Each element in list correspond to
+                    x, y, w, h of bounding box respectively.
         """
         h_img = img
         if h_img is None:
@@ -29,9 +29,5 @@ class HaarDetector:
             detected_img = self._haar_cascades.detectMultiScale(grey_img, 1.3, 5)
             box_lst = []
             for (x, y, w, h) in detected_img:
-                x = x
-                y = y
-                w = x + w
-                h = y + h
-                box_lst.append([x, y, w, h])
+                box_lst.append([x, y, w + x, h + y])
                 return box_lst

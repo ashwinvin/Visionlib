@@ -15,9 +15,9 @@ class MTCNNDetector(object):
             img_path: Path to the image for detection
 
         Returns:
-            A tuple containg 4 lists which correspond
-            to x, y, w, h of bounding box respectively.
-
+                box_lst : A list of list
+                    Each element in list correspond to
+                    x, y, w, h of bounding box respectively.
         """
         m_img = img
         if m_img is None:

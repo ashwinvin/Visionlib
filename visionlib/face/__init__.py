@@ -1,4 +1,4 @@
-from .detection import Detector
+from .detection import FDetector
 from .haar_detector import HaarDetector
 from .hog_detector import Hog_detector
 from .mtcnn_detector import MTCNNDetector
