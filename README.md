@@ -1,4 +1,4 @@
-# Tunnel Vision
+# Visionlib
 
 A simple high level api made for assisting in cv-related projects.
 This library can do the following functions.
