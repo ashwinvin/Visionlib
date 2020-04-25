@@ -3,6 +3,5 @@ __pycache__/*
 visionlib.egg-info
 build 
 dist
-test/assets
+examples/assets
 docs/
-models/
