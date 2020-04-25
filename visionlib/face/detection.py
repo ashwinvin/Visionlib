@@ -5,8 +5,8 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 from ..utils.imgutils import Image
 from .haar_detector import HaarDetector
 from .hog_detector import Hog_detector
+from .dnn_detector import DnnDetector
 from .mtcnn_detector import MTCNNDetector
-
 
 class FDetector:
     """
@@ -19,7 +19,7 @@ class FDetector:
 
             Used to detect face in an image. Returns the image with bounding
             boxes. Uses detector set by set_detector() method.
-  
+
         vdetect_face():
 
             Used to detect face in a video. Yields the frame with bounding
@@ -34,27 +34,26 @@ class FDetector:
 
     def __init__(self):
         self.image_util = Image()
-        self.hog = Hog_detector()
-        self.haar = HaarDetector()
-        self.mtcnn = MTCNNDetector()
-        self.detector = self.haar
+        self.set_detector()
         self.img = None
 
-    def set_detector(self, detector):
+    def set_detector(self, detector='dnn'):
         """
         This method is used to set detector to be used to detect
         faces in an image.
         Args:
             detector: str
                     The detector to be used. Can be any of the following:
-                    haar, hog, mtcnn
+                    haar, hog, mtcnn, dnn. Dnn will be used as default.
         """
         if detector == "haar":
-            self.detector = self.haar
+            self.detector = HaarDetector()
         elif detector == "hog":
-            self.detector = self.hog
+            self.detector = Hog_detector()
         elif detector == "mtcnn":
-            self.detector = self.mtcnn
+            self.detector = MTCNNDetector()
+        elif detector == 'dnn':
+            self.detector = DnnDetector()
 
     def detect_face(self, img=None, show=False):
         """
@@ -67,7 +66,6 @@ class FDetector:
             show (bool):  Set True to show image via cv2.imshow method.
         Returns:
             img (np.array) : Returns a numpy array of the image with bounding box.
-                    ONLY given when show is set to True
             box (list) : Returns x, y, w, h coordinates of the detected face
                     Returns an empty list if no face is detected.
 
@@ -87,7 +85,7 @@ class FDetector:
                 cv2.waitKey(0)
                 return [frame, box]
             else:
-                return img if (frame is None) else [frame, box]
+                return [img, None] if (frame is None) else [frame, box]
 
         else:
             raise Exception("No Arguments given")

@@ -1,0 +1,2 @@
+include visionlib/models/res10_300x300_ssd_iter_140000.caffemodel
+include visionlib/models/deploy.prototxt
