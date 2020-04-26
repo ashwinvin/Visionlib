@@ -25,7 +25,7 @@ jobs:
     - name: Build and publish
       env:
         TWINE_USERNAME: ${{ secrets.pypiuser  }}
-        TWINE_PASSWORD: ${{ secretspypipass}}
+        TWINE_PASSWORD: ${{ secrets.pypipass}}
       run: |
         python setup.py sdist bdist_wheel
         twine upload dist/*
