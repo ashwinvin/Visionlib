@@ -34,14 +34,19 @@ This will install visionlib.
 
 If You want to install from source
 `git clone https://github.com/ashwinvin/Visionlib.git`
+
 `cd visionlib`
+
 `pip install .`
 
 ### Face Detection
 
-Detecting face in an image is easy . This will return the image with bounding box and box coordinates
+Detecting face in an image is easy . This will return the image with bounding box and box coordinates.
+
 `from visionlib.face.detection import FDetector`
+
 `detector = FDetector()`
+
 `detector.detect_face(img, show=True)`
 
 This would detect face and display it automatically.
@@ -58,8 +63,11 @@ Dont like the default detector?, change it like this.
 ### Gender Detection
 
 Once face is detected, it can be passed on to detect_gender() function to recognize gender. It will return the labels (man, woman) and associated probabilities.Like this
+
 `from visionlib.gender.detection import GDetector`
+
 `Gdetector = GDetector()`
+
 `pred, confidence = Gdetector.detect_gender(c_img)`
 
 ##### Example
@@ -70,8 +78,11 @@ Once face is detected, it can be passed on to detect_gender() function to recogn
 
 Detecting common objects in the scene is enabled through a single function call detect_objects(). It will return the labeled image for the detected objects in the image. By default it uses yolov3-tiny model.
 `from visionlib.object.detection import Detection`
+
 `import cv2`
+
 `detector = Detection()`
+
 `d_img = detector.detect_objects(img)`
 
 You can enable gpu usage by
