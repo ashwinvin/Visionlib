@@ -12,8 +12,10 @@ args = parser.parse_args()
 # Read the image
 img = cv2.imread(args.img_path)
 # Detect the objects
-d_img = detector.detect_objects(img)
-if d_img is not None:
-    for dimg in d_img:
-        cv2.imshow("pic2", dimg)
-        cv2.waitKey(0)
+box, label, conf = detector.detect_objects(img)
+print(box, label, conf)
+# Draw boxes on image
+dimg = detector.draw_bbox(img, box, label, conf)
+# show image
+cv2.imshow("pic2", dimg)
+cv2.waitKey(0)

@@ -4,7 +4,7 @@ import cv2
 
 # Instantiating the required classes.
 detector = Detection()
-detector.set_detector("yolo")
+detector.set_detector("tiny_yolo")
 # Configre the parser.
 parser = argparse.ArgumentParser()
 parser.add_argument("vid_path", help="Path to image")
@@ -20,14 +20,14 @@ while run:
         break
     else:
         # Detect the objects.
-        d_img = detector.detect_objects(img)
+        box, label, conf = detector.detect_objects(img)
+        d_img = detector.draw_bbox(img, box, label, conf)
         # Check if there is objects
         if d_img is not None:
-            for dimg in d_img:
-                # Show the object
-                cv2.imshow("Object Detection", dimg)
-                if cv2.waitKey(1) & 0xFF == ord("q"):
-                    run = False
+            # Show the object
+            cv2.imshow("Object Detection", d_img)
+            if cv2.waitKey(1) & 0xFF == ord("q"):
+                run = False
         # if no object is found show default image
         else:
             cv2.imshow("Object Detection ", img)
