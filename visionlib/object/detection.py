@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import os
+import sys
 from visionlib.utils.webutils import web
 
 class Detection:
@@ -12,7 +13,7 @@ class Detection:
         self.min_confindence = 0.5
         self.threshold = 0.3
 
-    def set_detector(self, model_name='tiny-yolo'):
+    def set_detector(self, model_name='tiny_yolo'):
         '''
         Set's the detector to use. Can be tiny-yolo or yolo.
         Setting to tiny-yolo will use yolov3-tiny.
@@ -33,6 +34,8 @@ class Detection:
             model_file_name = 'yolov3.weights'
             cfg_url = 'https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.cfg'
             cfg_file_name = "yolov3.cfg"
+        else:
+            raise Exception("Invalid Selection")
 
         labels_url = 'https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.txt'
         labels_file_name = 'yolo_classes.txt'
@@ -63,8 +66,10 @@ class Detection:
                 opencv's imread method's output.
             enable_gpu : bool
                 Set to true if You want to use gpu.
-        Yields:
-            img (np.array) : Returns a numpy array of the image with bounding box.
+        Returns:
+            bbox : The detected bounding box.
+            labels : The deteted class.
+            confidence : Confidence for each detected class
         '''
         (H, W) = frame.shape[:2]
         blob = cv2.dnn.blobFromImage(
@@ -98,19 +103,41 @@ class Detection:
         idxs = cv2.dnn.NMSBoxes(
             boxes, confidences, self.min_confindence, self.threshold
         )
-
+        bbox = []
+        label = []
+        conf = []
         if len(idxs) > 0:
+            for ix in idxs:
+                ix = ix[0]
+                box = boxes[ix]
+                x = box[0]
+                y = box[1]
+                w = box[2]
+                h = box[3]
+                bbox.append([int(x), int(y), int(x + w), int(y + h)])
+                label.append(str(self.labels[classIDs[ix]]))
+                conf.append(confidences[ix])
+        return bbox, label, conf
 
-            for i in idxs.flatten():
+    def draw_bbox(self, img, bbox, labels, confidence):
+        '''
+        Draw's Box around the detected objects.
 
-                (x, y) = (boxes[i][0], boxes[i][1])
-                (w, h) = (boxes[i][2], boxes[i][3])
+        Args
+            img : The image to draw
+            bbox : bounding boxes given detect_objects function.
+            labels : labels given detect_objects function.
+            confidence : Confidence for the detected label.
+        Returns
+            img : The image with bounding boxes and labels.
+        '''
 
-                color = [int(c) for c in self.colours[classIDs[i]]]
-                cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
+        for i, label in enumerate(labels):
+            color = self.colours[self.labels.index(label)]
+            color = [int(x) for x in color]
 
-                text = "{}: {:.4f}".format(self.labels[classIDs[i]], confidences[i])
-                cv2.putText(
-                    frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2
-                )
-        yield frame
+            cv2.rectangle(img, (bbox[i][0], bbox[i][1]), (bbox[i][2], bbox[i][3]), color, 2)
+            cv2.putText(img, label, (bbox[i][0], bbox[i][1] - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+
+        return img
