@@ -1,6 +1,6 @@
 import cv2
 from ..utils.imgutils import Image
-
+import logging
 
 class HaarDetector:
     def __init__(self):
@@ -9,7 +9,7 @@ class HaarDetector:
         )
         self.image_util = Image()
 
-    def detect(self, img):
+    def detect(self, img=None, enable_gpu=False):
         """
         Detect faces using opencv's haar based detector.
 
@@ -23,8 +23,10 @@ class HaarDetector:
         """
         h_img = img
         if h_img is None:
-            raise Exception("Provided Path {0} is invaild ".format(img))
+            raise Exception("No image is received ".format(img))
         else:
+            if enable_gpu:
+                logging.warning("GPU is not supported for haar detector")
             grey_img = self.image_util.bgr_to_grey(h_img)
             detected_img = self._haar_cascades.detectMultiScale(grey_img, 1.3, 5)
             box_lst = []

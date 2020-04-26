@@ -1,13 +1,13 @@
 from mtcnn import MTCNN
 from ..utils.imgutils import Image
-
+import logging
 
 class MTCNNDetector(object):
     def __init__(self):
         self.image_util = Image()
         self._mtcnn_model = MTCNN()
 
-    def detect(self, img):
+    def detect(self, img=None, enable_gpu=False):
         """
         Detect faces using mtcnn based detector.
 
@@ -23,6 +23,8 @@ class MTCNNDetector(object):
         if m_img is None:
             raise Exception("Provided Path {0} is invaild ".format(img))
         else:
+            if enable_gpu:
+                logging.warning("GPU is not supported for MTCNN")
             detected_img = self._mtcnn_model.detect_faces(m_img)
             box_lst = []
             for face in detected_img:

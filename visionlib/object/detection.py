@@ -53,7 +53,7 @@ class Detection:
                 self.model_ln[i[0] - 1] for i in self.model.getUnconnectedOutLayers()
             ]
 
-    def detect_objects(self, frame):
+    def detect_objects(self, frame, enable_gpu=False):
         '''
         This method is used to detect objects in an image.
 
@@ -61,6 +61,8 @@ class Detection:
             img : cv2.imshow return output
                 This argument must the output which similar to
                 opencv's imread method's output.
+            enable_gpu : bool
+                Set to true if You want to use gpu.
         Yields:
             img (np.array) : Returns a numpy array of the image with bounding box.
         '''
@@ -68,6 +70,11 @@ class Detection:
         blob = cv2.dnn.blobFromImage(
             frame, 1 / 255.0, (416, 416), swapRB=True, crop=False
         )
+
+        if enable_gpu:
+            self.model.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+            self.model.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+
         self.model.setInput(blob)
         layerOutputs = self.model.forward(self.model_ln)
         boxes, confidences, classIDs = [], [], []

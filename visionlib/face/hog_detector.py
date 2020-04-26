@@ -1,13 +1,13 @@
 import dlib
 from ..utils.imgutils import Image
-
+import logging
 
 class Hog_detector:
     def __init__(self):
         self.image_util = Image()
         self._dlib_hog_model = dlib.get_frontal_face_detector()
 
-    def detect(self, img):
+    def detect(self, img=None, enable_gpu=False):
         """
         Detect faces using dlibs hog based detector.
 
@@ -21,8 +21,10 @@ class Hog_detector:
         """
         d_img = img
         if d_img is None:
-            raise Exception("Provided Path {0} is invaild ".format(img))
+            raise Exception("No image received ".format(img))
         else:
+            if enable_gpu:
+                logging.warning("GPU is not supported for hog detector")
             detected_img = self._dlib_hog_model(d_img, 1)
             box_lst = []
             for face in detected_img:

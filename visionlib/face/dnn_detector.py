@@ -57,3 +57,5 @@ class DnnDetector:
                 box_lst.append([startX, startY, endX, endY])
 
             return box_lst
+        else:
+            raise Exception("No image received ".format(img))

@@ -55,7 +55,7 @@ class FDetector:
         elif detector == 'dnn':
             self.detector = DnnDetector()
 
-    def detect_face(self, img=None, show=False):
+    def detect_face(self, img=None, show=False, enable_gpu=False):
         """
         This method is used to detect face in an image.
 
@@ -90,7 +90,7 @@ class FDetector:
         else:
             raise Exception("No Arguments given")
 
-    def vdetect_face(self, vid_path=None, show=False):
+    def vdetect_face(self, vid_path=None, show=False, enable_gpu=False):
         '''
         This method is used to detect face in an video
 
@@ -108,7 +108,7 @@ class FDetector:
         vid = self.image_util.read_video(vid_path)
         while True:
             status, frame = vid.read()
-            box = self.detector.detect(img=frame)
+            box = self.detector.detect(img=frame, enable_gpu=enable_gpu)
             if box is not None:
                 for face in box:
                     frame = cv2.rectangle(
