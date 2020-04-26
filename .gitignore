@@ -4,4 +4,4 @@ visionlib.egg-info
 build 
 dist
 examples/assets
-docs/
+.docs/

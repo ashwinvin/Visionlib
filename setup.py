@@ -5,11 +5,11 @@ with open("README.md", "r") as rd:
 
 setuptools.setup(
     name="visionlib",
-    version="1.0.0",
+    version="1.2.0",
     author="Ashwin Vinod",
     author_email="ashwinvinodsa@gmail.com",
     url='https://github.com/ashwinvin/Visionlib',
-    download_url='https://github.com/ashwinvin/Visionlib/archive/v1.0.0.tar.gz',
+    download_url='https://github.com/ashwinvin/Visionlib/archive/v1.2.0.tar.gz',
     description="A simple, easy to use and customizeble cv library ",
     long_description=long_description,
     long_description_content_type="text/markdown",
