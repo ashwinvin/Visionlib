@@ -49,9 +49,9 @@ Dont like the default detector?, change it like this.
 
 #### Examples
 
-![Detection](docs2/images/face_detected.jpg)
+![Detection](docs/images/face_detected.jpg)
 
-![Detection](docs2/images/face_detected_group.jpg)
+![Detection](docs/images/face_detected_group.jpg)
 
 ### Gender Detection
 
@@ -62,7 +62,7 @@ Once face is detected, it can be passed on to detect_gender() function to recogn
 
 ##### Example
 
-![Gender Detection](docs2/images/gender_detected_single.jpg)
+![Gender Detection](docs/images/gender_detected_single.jpg)
 
 ### Object Detection
 
@@ -76,4 +76,4 @@ You can enable gpu usage by
 `detector.detect_objects(img, enable_gpu=True)`
 
 #### Example
-![object Detection](docs2/images/object_detected_objects.jpg)
+![object Detection](docs/images/object_detected_objects.jpg)
