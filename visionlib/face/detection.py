@@ -28,7 +28,7 @@ class FDetector:
         set_detector():
 
             Used to set detector to used by detect_face() method. If not set
-            will haar detector as default.
+            will use dnn detector as default.
 
     """
 

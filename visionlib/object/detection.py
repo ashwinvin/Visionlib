@@ -5,6 +5,29 @@ import sys
 from visionlib.utils.webutils import web
 
 class Detection:
+    """
+    This class contains all functions to detect objects from an image.
+                . . .
+
+    Methods:
+
+        detect_objects():
+
+            Used to detect objects from an image. Returns the bounding
+            boxes, labels and confidence. Uses detector set by set_detector() method.
+
+        draw_box():
+
+            Used to draw the bounding box, labels and confidence in an image. Returns
+            the frame with bounding boxes. Uses detector set by set_detector() method.
+
+        set_detector():
+
+            Used to set detector to used by detect_objects() method. If not set
+            will use tiny yolo as default.
+
+    """
+
     def __init__(self):
         self.model = None
         self.model_ln = None

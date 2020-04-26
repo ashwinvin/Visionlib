@@ -7,6 +7,19 @@ from visionlib.utils.imgutils import Image
 
 
 class GDetector:
+    """
+    This class contains all functions to detect gender of a given face
+                . . .
+
+    Methods:
+
+        detect_gender():
+
+            Used to detect gender from an face. Returns Predicted Gender and
+            confidence.
+
+    """
+
     def __init__(self):
         self.labels = ["male", "female"]
         self.mean = (78.4263377603, 87.7689143744, 114.895847746)

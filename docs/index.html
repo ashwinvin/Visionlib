@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to Visionlib’s documentation! &#8212; Visionlib 1.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-visionlib-s-documentation">
+<h1>Welcome to Visionlib’s documentation!<a class="headerlink" href="#welcome-to-visionlib-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="face-detection">
+<h1>Face Detection<a class="headerlink" href="#face-detection" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="visionlib.face.detection.FDetector">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.face.detection.</code><code class="sig-name descname">FDetector</code><a class="headerlink" href="#visionlib.face.detection.FDetector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This class contains all functions to detect face in an image.</dt><dd><p>…</p>
+</dd>
+</dl>
+<p>Methods:</p>
+<blockquote>
+<div><p>detect_face():</p>
+<blockquote>
+<div><p>Used to detect face in an image. Returns the image with bounding
+boxes. Uses detector set by set_detector() method.</p>
+</div></blockquote>
+<p>vdetect_face():</p>
+<blockquote>
+<div><p>Used to detect face in a video. Yields the frame with bounding
+boxes. Uses detector set by set_detector() method.</p>
+</div></blockquote>
+<p>set_detector():</p>
+<blockquote>
+<div><p>Used to set detector to used by detect_face() method. If not set
+will use dnn detector as default.</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="py method">
+<dt id="visionlib.face.detection.FDetector.detect_face">
+<code class="sig-name descname">detect_face</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.face.detection.FDetector.detect_face" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to detect face in an image.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>img<span class="classifier">cv2.imshow return output</span></dt><dd><p>This argument must the output which similar to
+opencv’s imread method’s output.</p>
+</dd>
+</dl>
+<p>show (bool):  Set True to show image via cv2.imshow method.</p>
+</dd>
+<dt>Returns:</dt><dd><p>img (np.array) : Returns a numpy array of the image with bounding box.
+box (list) : Returns x, y, w, h coordinates of the detected face</p>
+<blockquote>
+<div><p>Returns an empty list if no face is detected.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="visionlib.face.detection.FDetector.set_detector">
+<code class="sig-name descname">set_detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">detector</span><span class="o">=</span><span class="default_value">'dnn'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.face.detection.FDetector.set_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to set detector to be used to detect
+faces in an image.
+Args:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>detector: str</dt><dd><p>The detector to be used. Can be any of the following:
+haar, hog, mtcnn, dnn. Dnn will be used as default.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="visionlib.face.detection.FDetector.vdetect_face">
+<code class="sig-name descname">vdetect_face</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vid_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.face.detection.FDetector.vdetect_face" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to detect face in an video</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>vid_path<span class="classifier">str</span></dt><dd><p>Absolute Path to the video file.</p>
+</dd>
+</dl>
+<p>show (bool):  Set True to show image via cv2.imshow method.</p>
+</dd>
+<dt>Yields:</dt><dd><dl class="simple">
+<dt>img (np.array)<span class="classifier">Returns a numpy array of the image with bounding box.</span></dt><dd><p>ONLY given when show is set to True</p>
+</dd>
+<dt>box (list)<span class="classifier">Returns x, y, w, h coordinates of the detected face</span></dt><dd><p>Returns an empty list if no face is detected.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="gender-detection">
+<h1>Gender Detection<a class="headerlink" href="#gender-detection" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="visionlib.gender.detection.GDetector">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.gender.detection.</code><code class="sig-name descname">GDetector</code><a class="headerlink" href="#visionlib.gender.detection.GDetector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This class contains all functions to detect gender of a given face</dt><dd><p>…</p>
+</dd>
+</dl>
+<p>Methods:</p>
+<blockquote>
+<div><p>detect_gender():</p>
+<blockquote>
+<div><p>Used to detect gender from an face. Returns Predicted Gender and
+confidence.</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="py method">
+<dt id="visionlib.gender.detection.GDetector.detect_gender">
+<code class="sig-name descname">detect_gender</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.gender.detection.GDetector.detect_gender" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>This method is used to detect gender from an image.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>img<span class="classifier">cv2.imshow return output</span></dt><dd><p>This argument must the output which similar to
+opencv’s imread method’s output.</p>
+</dd>
+<dt>enable_gpu (bool)<span class="classifier">Set to True if You want to use gpu</span></dt><dd><p>for prediction.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>str : Returns the predicted gender.
+int : Returns the confidence for the predicted gender.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="object-detection">
+<h1>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="visionlib.object.detection.Detection">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.object.detection.</code><code class="sig-name descname">Detection</code><a class="headerlink" href="#visionlib.object.detection.Detection" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This class contains all functions to detect objects from an image.</dt><dd><p>…</p>
+</dd>
+</dl>
+<p>Methods:</p>
+<blockquote>
+<div><p>detect_objects():</p>
+<blockquote>
+<div><p>Used to detect objects from an image. Returns the bounding
+boxes, labels and confidence. Uses detector set by set_detector() method.</p>
+</div></blockquote>
+<p>draw_box():</p>
+<blockquote>
+<div><p>Used to draw the bounding box, labels and confidence in an image. Returns
+the frame with bounding boxes. Uses detector set by set_detector() method.</p>
+</div></blockquote>
+<p>set_detector():</p>
+<blockquote>
+<div><p>Used to set detector to used by detect_objects() method. If not set
+will use tiny yolo as default.</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="py method">
+<dt id="visionlib.object.detection.Detection.detect_objects">
+<code class="sig-name descname">detect_objects</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frame</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.Detection.detect_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to detect objects in an image.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>img<span class="classifier">cv2.imshow return output</span></dt><dd><p>This argument must the output which similar to
+opencv’s imread method’s output.</p>
+</dd>
+<dt>enable_gpu<span class="classifier">bool</span></dt><dd><p>Set to true if You want to use gpu.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>bbox : The detected bounding box.
+labels : The deteted class.
+confidence : Confidence for each detected class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="visionlib.object.detection.Detection.draw_bbox">
+<code class="sig-name descname">draw_bbox</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span></em>, <em class="sig-param"><span class="n">bbox</span></em>, <em class="sig-param"><span class="n">labels</span></em>, <em class="sig-param"><span class="n">confidence</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.Detection.draw_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw’s Box around the detected objects.</p>
+<dl class="simple">
+<dt>Args</dt><dd><p>img : The image to draw
+bbox : bounding boxes given detect_objects function.
+labels : labels given detect_objects function.
+confidence : Confidence for the detected label.</p>
+</dd>
+<dt>Returns</dt><dd><p>img : The image with bounding boxes and labels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="visionlib.object.detection.Detection.set_detector">
+<code class="sig-name descname">set_detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span><span class="o">=</span><span class="default_value">'tiny_yolo'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.Detection.set_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set’s the detector to use. Can be tiny-yolo or yolo.
+Setting to tiny-yolo will use yolov3-tiny.
+Setting to yolo will use yolov3.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>model_name(str):The model to use. If the given model is</dt><dd><p>not present in pc, it will download and use it.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Visionlib</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ashwin Vinod.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
