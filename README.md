@@ -92,4 +92,9 @@ You can enable gpu usage by
 
 ![object Detection](docs/images/object_detected_objects.jpg)
 
-For more examples look in examples directory
+#### Documentation
+
+Complete Documenation can be found on 
+https://ashwinvin.github.io/Visionlib/
+
+For example check the examples directory
