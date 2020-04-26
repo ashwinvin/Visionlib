@@ -19,7 +19,9 @@ A simple high level api made for assisting in cv-related projects.
 #### Dependencies
 
 `sudo apt-get install build-essential cmake pkg-config`
+
 `sudo apt-get install libx11-dev libatlas-base-dev`
+
 `sudo apt-get install libgtk-3-dev libboost-python-dev`
 
 This should install Dependencies required by dlib.
@@ -72,11 +74,11 @@ Detecting common objects in the scene is enabled through a single function call 
 `detector = Detection()`
 `d_img = detector.detect_objects(img)`
 
-You can enable gpu usage by 
+You can enable gpu usage by
 `detector.detect_objects(img, enable_gpu=True)`
 
 #### Example
-![object Detection](docs/images/object_detected_objects.jpg)
 
+![object Detection](docs/images/object_detected_objects.jpg)
 
 For more examples look in examples directory
