@@ -44,10 +44,10 @@ class DnnDetector:
 
             detections = self.model.forward()
             box_lst = []
+            confidences = []
 
             for i in range(0, detections.shape[2]):
                 conf = detections[0, 0, i, 2]
-
                 if conf < threshold:
                     continue
 
@@ -55,7 +55,8 @@ class DnnDetector:
                 (startX, startY, endX, endY) = box.astype("int")
 
                 box_lst.append([startX, startY, endX, endY])
+                confidences.append(conf)
 
-            return box_lst
+            return box_lst, confidences
         else:
             raise Exception("No image received ".format(img))

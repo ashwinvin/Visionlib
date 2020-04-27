@@ -27,10 +27,12 @@ class Hog_detector:
                 logging.warning("GPU is not supported for hog detector")
             detected_img = self._dlib_hog_model(d_img, 1)
             box_lst = []
+            confidences = []
             for face in detected_img:
                 x = face.left()
                 y = face.top()
                 w = face.right()
                 h = face.bottom()
                 box_lst.append([x, y, w, h])
-            return box_lst
+                confidences.append(None)
+            return box_lst, confidences

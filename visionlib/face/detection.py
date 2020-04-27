@@ -41,10 +41,10 @@ class FDetector:
         """
         This method is used to set detector to be used to detect
         faces in an image.
+
         Args:
-            detector: str
-                    The detector to be used. Can be any of the following:
-                    haar, hog, mtcnn, dnn. Dnn will be used as default.
+            detector (str) : The detector to be used. Can be any of the following:
+                             haar, hog, mtcnn, dnn. Dnn will be used as default.
         """
         if detector == "haar":
             self.detector = HaarDetector()
@@ -63,29 +63,38 @@ class FDetector:
             img : cv2.imshow return output
                 This argument must the output which similar to
                 opencv's imread method's output.
+
             show (bool):  Set True to show image via cv2.imshow method.
+
         Returns:
             img (np.array) : Returns a numpy array of the image with bounding box.
+
             box (list) : Returns x, y, w, h coordinates of the detected face
-                    Returns an empty list if no face is detected.
+                         Returns an empty list if no face is detected.
+
+            confidences (list) : Returns the associated confidences for
+                                the detected face.
 
         """
 
         if img is not None:
-            box = self.detector.detect(img=img)
+            box, confidences = self.detector.detect(img=img)
             frame = None
             if box is not None:
-                for face in box:
+                for face, conf in zip(box, confidences):
                     frame = cv2.rectangle(
                         img, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
                     )
 
+                    if conf is not None:
+                        conf = str(int(conf * 100))
+
             if show is True:
                 cv2.imshow("Visionlib", frame)
                 cv2.waitKey(0)
-                return [frame, box]
+                return [frame, box, conf]
             else:
-                return [img, None] if (frame is None) else [frame, box]
+                return [img, None] if (frame is None) else [frame, box, conf]
 
         else:
             raise Exception("No Arguments given")
@@ -101,26 +110,28 @@ class FDetector:
             show (bool):  Set True to show image via cv2.imshow method.
         Yields:
             img (np.array) : Returns a numpy array of the image with bounding box.
-                    ONLY given when show is set to True
+                             ONLY given when show is set to True
             box (list) : Returns x, y, w, h coordinates of the detected face
-                    Returns an empty list if no face is detected.
+                        Returns an empty list if no face is detected.
+            confidences (list) : Returns the associated confidences for
+                                 the detected face.
         '''
         vid = self.image_util.read_video(vid_path)
         while True:
             status, frame = vid.read()
-            box = self.detector.detect(img=frame, enable_gpu=enable_gpu)
+            box, confidences = self.detector.detect(img=frame, enable_gpu=enable_gpu)
             if box is not None:
-                for face in box:
-                    frame = cv2.rectangle(
-                        frame,
-                        (face[0], face[1]),
-                        (face[2], face[3]),
-                        (0, 255, 0),
-                        2,
-                    )
-                    yield [frame, box]
+                for face, conf in zip(box, confidences):
+                    frame = cv2.rectangle(frame, (face[0], face[1]),
+                                          (face[2], face[3]), (0, 255, 0), 2)
+
+                    if conf is not None:
+                        conf = str(int(conf * 100))
+
+                    yield [frame, box, conf]
+
             if show is True:
                 cv2.imshow("Visionlib", frame)
-                yield [frame, box]
+                yield [frame, box, conf]
                 if cv2.waitKey(1) & 0xFF == ord("q"):
                     break

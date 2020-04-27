@@ -18,6 +18,7 @@ class MTCNNDetector(object):
                 box_lst : A list of list
                     Each element in list correspond to
                     x, y, w, h of bounding box respectively.
+        [{'box': [285, 89, 175, 218], 'confidence': 0.996926486492157,
         """
         m_img = img
         if m_img is None:
@@ -27,10 +28,13 @@ class MTCNNDetector(object):
                 logging.warning("GPU is not supported for MTCNN")
             detected_img = self._mtcnn_model.detect_faces(m_img)
             box_lst = []
+            confidences = []
             for face in detected_img:
                 x = face["box"][0]
                 y = face["box"][1]
                 w = face["box"][2]
                 h = face["box"][3]
                 box_lst.append([x, y, w + x, h + y])
-            return box_lst
+                conf = face['confidence']
+                confidences.append(conf)
+            return box_lst, confidences

@@ -30,6 +30,8 @@ class HaarDetector:
             grey_img = self.image_util.bgr_to_grey(h_img)
             detected_img = self._haar_cascades.detectMultiScale(grey_img, 1.3, 5)
             box_lst = []
+            confidences = []
             for (x, y, w, h) in detected_img:
                 box_lst.append([x, y, w + x, h + y])
-                return box_lst
+                confidences.append(None)
+                return box_lst, confidences
