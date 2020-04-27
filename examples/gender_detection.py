@@ -7,6 +7,8 @@ import argparse
 # Configre the parser.
 parser = argparse.ArgumentParser()
 parser.add_argument("img_path", help="Path to image")
+parser.add_argument("--enable-gpu", help="Set to true to enable gpu support",
+                    dest="enable_gpu", default=False, type=bool)
 args = parser.parse_args()
 # Instantiating the required classes.
 Fdetector = FDetector()
@@ -21,7 +23,7 @@ for box in boxes:
     # Get the face by cropping
     c_img = im_utils.crop(d_img, box)
     # Apply Gender Detection
-    gender = Gdetector.detect_gender(c_img)
+    gender = Gdetector.detect_gender(c_img, enable_gpu=args.enable_gpu)
     # format the label
     label = "{}: {:.2f}%".format(gender[0], gender[1] * 100)
     # Put padding for rendering the label
