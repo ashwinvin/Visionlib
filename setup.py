@@ -5,7 +5,7 @@ with open("README.md", "r") as rd:
 
 setuptools.setup(
     name="visionlib",
-    version="1.2.0",
+    version="1.3.0",
     author="Ashwin Vinod",
     author_email="ashwinvinodsa@gmail.com",
     url='https://github.com/ashwinvin/Visionlib',
