@@ -38,18 +38,19 @@ class GDetector:
         self.model = cv2.dnn.readNet(self.proto, self.model)
 
     def detect_gender(self, img=None, enable_gpu=False):
-        '''
-             This method is used to detect gender from an image.
+        '''This method is used to detect gender from an image.
 
         Args:
-            img : cv2.imshow return output
+            img (numpy array)
                 This argument must the output which similar to
                 opencv's imread method's output.
-            enable_gpu (bool) : Set to True if You want to use gpu
-                    for prediction.
+            enable_gpu (bool) :
+                Set to True if You want to use gpu for prediction.
         Returns:
-            str : Returns the predicted gender.
-            int : Returns the confidence for the predicted gender.
+            str :
+                Returns the predicted gender.
+            int :
+                Returns the confidence for the predicted gender.
         '''
         if img != []:
             blob = cv2.dnn.blobFromImage(img, 1.0, (227, 227), self.mean, swapRB=False)

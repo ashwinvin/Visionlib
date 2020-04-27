@@ -6,8 +6,7 @@ import logging
 from visionlib.utils.webutils import web
 
 class Detection:
-    """
-    This class contains all functions to detect objects from an image.
+    """This class contains all functions to detect objects from an image.
                 . . .
 
     Methods:
@@ -39,23 +38,23 @@ class Detection:
 
     def set_detector(self, model_name='tiny_yolo', model_path=None, cfg_path=None,
                      label_path=None):
-        '''
-        Set's the detector to use. Can be tiny-yolo or yolo.
+        '''Set's the detector to use. Can be tiny-yolo or yolo.
         Setting to tiny-yolo will use yolov3-tiny.
         Setting to yolo will use yolov3.
 
         Args:
-            model_name(str):The model to use. If the given model is
-                not present in pc, it will download and use it.
-
-            model_path(str):Set this to path where the custom model You want
-                            to load is.
-
-            cfg_path(str) : Set this to path where the config file for custom model,
-                            You want to load is.
-            
-            label_path(str) : Set this to path where the labels file for custom model,
-                              You want to load is.
+            model_name (str):
+                    The model to use. If the given model is
+                    not present in pc, it will download and use it.
+            model_path (str):
+                        Set this to path where the custom model You want
+                        to load is.
+            cfg_path (str):
+                        Set this to path where the config file for custom model,
+                        You want to load is.
+            label_path (str):
+                        Set this to path where the labels file for custom model,
+                        You want to load is.
         '''
         labels_url = 'https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.txt'
         labels_file_name = 'yolo_classes.txt'
@@ -110,19 +109,25 @@ class Detection:
             ]
 
     def detect_objects(self, frame, enable_gpu=False):
-        '''
-        This method is used to detect objects in an image.
+        '''This method is used to detect objects in an image.
 
         Args:
-            img : cv2.imshow return output
-                This argument must the output which similar to
-                opencv's imread method's output.
-            enable_gpu : bool
-                Set to true if You want to use gpu.
+            frame (np.array):
+                        Image to detect objects from.
+
+            enable_gpu (bool):
+                         Set to true if You want to use gpu.
+
         Returns:
-            bbox : The detected bounding box.
-            labels : The deteted class.
-            confidence : Confidence for each detected class
+            list :
+                The detected bounding box.
+
+            list :
+                The detected class.
+
+            list :
+                Confidence for each detected class
+
         '''
         (H, W) = frame.shape[:2]
         blob = cv2.dnn.blobFromImage(
@@ -173,16 +178,21 @@ class Detection:
         return bbox, label, conf
 
     def draw_bbox(self, img, bbox, labels, confidence):
-        '''
-        Draw's Box around the detected objects.
+        '''Draw's Box around the detected objects.
 
         Args
-            img : The image to draw
-            bbox : bounding boxes given detect_objects function.
-            labels : labels given detect_objects function.
-            confidence : Confidence for the detected label.
+            img (numpy.array):
+                The image to draw bounding boxes
+            bbox (list):
+                bounding boxes given detect_objects function.
+            labels (list):
+                labels given detect_objects function.
+            confidence (list):
+                Confidence for the detected label.
+
         Returns
-            img : The image with bounding boxes and labels.
+            numpy.array : 
+                The image with bounding boxes and labels.
         '''
 
         for i, label in enumerate(labels):

@@ -9,8 +9,7 @@ from .dnn_detector import DnnDetector
 from .mtcnn_detector import MTCNNDetector
 
 class FDetector:
-    """
-    This class contains all functions to detect face in an image.
+    """This class contains all functions to detect face in an image.
                 . . .
 
     Methods:
@@ -43,8 +42,9 @@ class FDetector:
         faces in an image.
 
         Args:
-            detector (str) : The detector to be used. Can be any of the following:
-                             haar, hog, mtcnn, dnn. Dnn will be used as default.
+            detector (str) :
+                The detector to be used. Can be any of the following:
+                haar, hog, mtcnn, dnn. Dnn will be used as default.
         """
         if detector == "haar":
             self.detector = HaarDetector()
@@ -56,24 +56,27 @@ class FDetector:
             self.detector = DnnDetector()
 
     def detect_face(self, img=None, show=False, enable_gpu=False):
-        """
-        This method is used to detect face in an image.
+        """This method is used to detect face in an image.
 
         Args:
-            img : cv2.imshow return output
+            img (numpy array) :
                 This argument must the output which similar to
                 opencv's imread method's output.
 
-            show (bool):  Set True to show image via cv2.imshow method.
+            show (bool) :
+                Set True to show image via cv2.imshow method.
 
         Returns:
-            img (np.array) : Returns a numpy array of the image with bounding box.
+            img (np.array) :
+                Returns a numpy array of the image with bounding box.
 
-            box (list) : Returns x, y, w, h coordinates of the detected face
-                         Returns an empty list if no face is detected.
+            box (list) :
+                Returns x, y, w, h coordinates of the detected face
+                Returns an empty list if no face is detected.
 
-            confidences (list) : Returns the associated confidences for
-                                the detected face.
+            confidences (list) :
+                Returns the associated confidences for
+                the detected face.
 
         """
 
@@ -100,21 +103,24 @@ class FDetector:
             raise Exception("No Arguments given")
 
     def vdetect_face(self, vid_path=None, show=False, enable_gpu=False):
-        '''
-        This method is used to detect face in an video
+        '''This method is used to detect face in an video
 
         Args:
-            vid_path : str
+            vid_path (str):
                 Absolute Path to the video file.
 
-            show (bool):  Set True to show image via cv2.imshow method.
+            show (bool):
+                Set True to show image via cv2.imshow method.
         Yields:
-            img (np.array) : Returns a numpy array of the image with bounding box.
-                             ONLY given when show is set to True
-            box (list) : Returns x, y, w, h coordinates of the detected face
-                        Returns an empty list if no face is detected.
-            confidences (list) : Returns the associated confidences for
-                                 the detected face.
+            img (np.array) :
+                Returns a numpy array of the image with bounding box.
+                ONLY given when show is set to True
+            box (list) :
+                Returns x, y, w, h coordinates of the detected face
+                Returns an empty list if no face is detected.
+            confidences (list) :
+                Returns the associated confidences for
+                the detected face.
         '''
         vid = self.image_util.read_video(vid_path)
         while True:
