@@ -1,4 +1,6 @@
 ![Upload Python Package](https://github.com/ashwinvin/Visionlib/workflows/Upload%20Python%20Package/badge.svg?branch=v1.3.0)
+![logo](docs/images/logo(1).jpg)
+
 # Visionlib
 
 A simple high level api made for assisting in cv-related projects.
@@ -113,3 +115,7 @@ Complete Documenation can be found on
 https://ashwinvin.github.io/Visionlib/
 
 For example check the examples directory
+
+
+None of the images in the this repository are owned by me.
+They belong to there respective owners.

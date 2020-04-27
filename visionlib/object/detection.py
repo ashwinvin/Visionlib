@@ -191,7 +191,7 @@ class Detection:
                 Confidence for the detected label.
 
         Returns
-            numpy.array : 
+            numpy.array :
                 The image with bounding boxes and labels.
         '''
 
