@@ -32,7 +32,7 @@ class Detection:
     def __init__(self):
         self.model = None
         self.model_ln = None
-        np.random.seed(6865)
+        np.random.seed(62)
         self.web_util = web()
         self.min_confindence = 0.5
         self.threshold = 0.3
@@ -60,7 +60,21 @@ class Detection:
         labels_url = 'https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.txt'
         labels_file_name = 'yolo_classes.txt'
 
-        if model_name == "tiny_yolo":
+        if model_path is not None and cfg_path is not None:
+            if os.path.exists(model_path) & os.path.exists(cfg_path):
+                model = model_path
+                cfg = cfg_path
+            else:
+                raise Exception("Provided model path or config path does not exist")
+
+            if label_path is None:
+                logging.warning("Label path is not provided")
+                logging.warning("Using default labels")
+                labels = self.web_util.download_file(labels_url, labels_file_name)
+            else:
+                labels = label_path
+
+        elif model_name == "tiny_yolo":
             model_url = "https://pjreddie.com/media/files/yolov3-tiny.weights"
             model_file_name = 'yolov3-tiny.weights'
             cfg_url = "https://github.com/pjreddie/darknet/raw/master/cfg/yolov3-tiny.cfg"
@@ -79,20 +93,6 @@ class Detection:
             labels = self.web_util.download_file(labels_url, labels_file_name)
             model = self.web_util.download_file(model_url, model_file_name)
             cfg = self.web_util.download_file(cfg_url, cfg_file_name)
-
-        elif model_path is not None and cfg_path is not None:
-            if os.path.exists(model_path) & os.path.exists(cfg_path):
-                model = model_path
-                cfg = cfg_path
-            else:
-                raise Exception("Provided model path or config path does not exist")
-
-            if label_path is None:
-                logging.warning("Label path is not provided")
-                logging.warning("Using default labels")
-                labels = self.web_util.download_file(labels_url, labels_file_name)
-            else:
-                labels = label_path
 
         else:
             raise Exception("Invalid model name")
@@ -188,7 +188,8 @@ class Detection:
         for i, label in enumerate(labels):
             color = self.colours[self.labels.index(label)]
             color = [int(x) for x in color]
-            label = label + " " + str(confidence[i] * 100)
+            conf = round(confidence[i] * 100, 2)
+            label = label + " " + str(conf)
             cv2.rectangle(img, (bbox[i][0], bbox[i][1]), (bbox[i][2], bbox[i][3]), color, 2)
             cv2.putText(img, label, (bbox[i][0], bbox[i][1] - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
