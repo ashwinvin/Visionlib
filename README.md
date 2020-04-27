@@ -1,3 +1,4 @@
+![Upload Python Package](https://github.com/ashwinvin/Visionlib/workflows/Upload%20Python%20Package/badge.svg?branch=v1.3.0)
 # Visionlib
 
 A simple high level api made for assisting in cv-related projects.
