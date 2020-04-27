@@ -16,7 +16,7 @@ im_utils = Image()
 img = cv2.imread(args.img_path)
 Fdetector.set_detector("hog")
 # Detect the Faces
-d_img, boxes = Fdetector.detect_face(img)
+d_img, boxes, conf = Fdetector.detect_face(img)
 for box in boxes:
     # Get the face by cropping
     c_img = im_utils.crop(d_img, box)

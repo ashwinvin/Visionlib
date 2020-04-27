@@ -14,6 +14,7 @@ detector = FDetector()
 img = cv2.imread(args.img_path)
 detector.set_detector("hog")
 # Apply face detection and show image
-d_img, boxes = detector.detect_face(img, show=True)
+d_img, boxes, conf = detector.detect_face(img, show=True)
 for box in boxes:
+    # print(conf)
     print(box)

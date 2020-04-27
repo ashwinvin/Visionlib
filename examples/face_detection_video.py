@@ -10,8 +10,8 @@ args = parser.parse_args()
 # Instantiating the required classes.
 detector = FDetector()
 
-detector.set_detector("hog")
+detector.set_detector("dnn")
 # Read the video and apply face detection.
 detection = detector.vdetect_face(args.vid_path, show=True)
-for img, box in detection:
-    print(box)
+for img, box, conf in detection:
+    print(box, conf)

@@ -20,7 +20,7 @@ detection = detector.vdetect_face(args.vid_path)
 run = True
 while run:
     # Get frames and bounding boxes of faces
-    for img, boxes in detection:
+    for img, boxes, conf in detection:
         for box in boxes:
             # Get the face by cropping
             c_img = im_utils.crop(img, box)
