@@ -6,6 +6,7 @@ import os
 
 class web:
     def __init__(self):
+        logging.basicConfig(level=logging.INFO)
         self.home_dir = os.path.expanduser('~') + os.path.sep + '.visionlib'
         pass
 
@@ -26,5 +27,5 @@ class web:
                 return full_path
             except Exception as e:
                 logging.fatal("Something went wrong during download")
-                logging.warn("Try again later")
+                logging.fatal("Try again later")
                 sys.exit(1)
