@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import os
 import sys
+import logging
 from visionlib.utils.webutils import web
 
 class Detection:
@@ -36,7 +37,8 @@ class Detection:
         self.min_confindence = 0.5
         self.threshold = 0.3
 
-    def set_detector(self, model_name='tiny_yolo'):
+    def set_detector(self, model_name='tiny_yolo', model_path=None, cfg_path=None,
+                     label_path=None):
         '''
         Set's the detector to use. Can be tiny-yolo or yolo.
         Setting to tiny-yolo will use yolov3-tiny.
@@ -45,27 +47,55 @@ class Detection:
         Args:
             model_name(str):The model to use. If the given model is
                 not present in pc, it will download and use it.
+
+            model_path(str):Set this to path where the custom model You want
+                            to load is.
+
+            cfg_path(str) : Set this to path where the config file for custom model,
+                            You want to load is.
+            
+            label_path(str) : Set this to path where the labels file for custom model,
+                              You want to load is.
         '''
+        labels_url = 'https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.txt'
+        labels_file_name = 'yolo_classes.txt'
+
         if model_name == "tiny_yolo":
             model_url = "https://pjreddie.com/media/files/yolov3-tiny.weights"
             model_file_name = 'yolov3-tiny.weights'
             cfg_url = "https://github.com/pjreddie/darknet/raw/master/cfg/yolov3-tiny.cfg"
             cfg_file_name = 'yolov3-tiny.cfg'
 
+            labels = self.web_util.download_file(labels_url, labels_file_name)
+            model = self.web_util.download_file(model_url, model_file_name)
+            cfg = self.web_util.download_file(cfg_url, cfg_file_name)
+
         elif model_name == "yolo":
             model_url = "https://pjreddie.com/media/files/yolov3.weights"
             model_file_name = 'yolov3.weights'
             cfg_url = 'https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.cfg'
             cfg_file_name = "yolov3.cfg"
+
+            labels = self.web_util.download_file(labels_url, labels_file_name)
+            model = self.web_util.download_file(model_url, model_file_name)
+            cfg = self.web_util.download_file(cfg_url, cfg_file_name)
+
+        elif model_path is not None and cfg_path is not None:
+            if os.path.exists(model_path) & os.path.exists(cfg_path):
+                model = model_path
+                cfg = cfg_path
+            else:
+                raise Exception("Provided model path or config path does not exist")
+
+            if label_path is None:
+                logging.warning("Label path is not provided")
+                logging.warning("Using default labels")
+                labels = self.web_util.download_file(labels_url, labels_file_name)
+            else:
+                labels = label_path
+
         else:
-            raise Exception("Invalid Selection")
-
-        labels_url = 'https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.txt'
-        labels_file_name = 'yolo_classes.txt'
-
-        labels = self.web_util.download_file(labels_url, labels_file_name)
-        model = self.web_util.download_file(model_url, model_file_name)
-        cfg = self.web_util.download_file(cfg_url, cfg_file_name)
+            raise Exception("Invalid model name")
 
         if model and cfg is not None:
 
@@ -158,7 +188,7 @@ class Detection:
         for i, label in enumerate(labels):
             color = self.colours[self.labels.index(label)]
             color = [int(x) for x in color]
-
+            label = label + " " + str(confidence[i] * 100)
             cv2.rectangle(img, (bbox[i][0], bbox[i][1]), (bbox[i][2], bbox[i][3]), color, 2)
             cv2.putText(img, label, (bbox[i][0], bbox[i][1] - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
