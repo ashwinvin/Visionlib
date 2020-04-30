@@ -29,13 +29,8 @@ class GDetector:
         self.__set_detector()
 
     def __set_detector(self):
-        model_name = 'gender_net.caffemodel'
-        model_url = 'https://github.com/arunponnusamy/cvlib-files/releases/download/v0.1/gender_net.caffemodel'
-        proto_name = 'gender_deploy.prototxt'
-        proto_url = 'https://download.cvlib.net/config/gender_detection/gender_deploy.prototxt'
-        self.model = self.web_util.download_file(model_url, model_name)
-        self.proto = self.web_util.download_file(proto_url, proto_name)
-        self.model = cv2.dnn.readNet(self.proto, self.model)
+        model, proto = self.web_util.download_file('Gender')
+        self.model = cv2.dnn.readNet(proto, model)
 
     def detect_gender(self, img=None, enable_gpu=False):
         '''This method is used to detect gender from an image.

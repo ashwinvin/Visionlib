@@ -97,7 +97,7 @@ class FDetector:
                 cv2.waitKey(0)
                 return [frame, box, conf]
             else:
-                return [img, None] if (frame is None) else [frame, box, conf]
+                return [img, None, None] if (frame is None) else [frame, box, conf]
 
         else:
             raise Exception("No Arguments given")
@@ -124,7 +124,8 @@ class FDetector:
         '''
         vid = self.image_util.read_video(vid_path)
         while True:
-            status, frame = vid.read()
+            status, img = vid.read()
+            frame = img
             box, confidences = self.detector.detect(img=frame, enable_gpu=enable_gpu)
             if box is not None:
                 for face, conf in zip(box, confidences):
@@ -134,10 +135,10 @@ class FDetector:
                     if conf is not None:
                         conf = str(int(conf * 100))
 
-                    yield [frame, box, conf]
+                    yield [frame, None, None] if (frame is None) else [frame, box, conf]
 
             if show is True:
                 cv2.imshow("Visionlib", frame)
-                yield [frame, box, conf]
+                yield [frame, None, None] if (frame is None) else [frame, box, conf]
                 if cv2.waitKey(1) & 0xFF == ord("q"):
                     break
