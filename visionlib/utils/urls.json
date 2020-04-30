@@ -1,0 +1,35 @@
+{
+    "Tiny-yolov3":{
+        "model_url" : "https://pjreddie.com/media/files/yolov3-tiny.weights",
+        "model_name" : "yolov3-tiny.weights",
+        "cfg_url": "https://github.com/pjreddie/darknet/raw/master/cfg/yolov3-tiny.cfg",
+        "cfg_name": " yolov3-tiny.cfg",
+        "dest_path": "object_detection",
+        "label_url": "https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.txt",
+        "label_name" : "yolo_classes.txt"
+    },
+
+    "Yolov3":{
+        "model_url" : "https://pjreddie.com/media/files/yolov3.weights",
+        "model_name" : "yolov3.weights",
+        "cfg_url" : "https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.cfg",
+        "cfg_name" : "yolov3.cfg",
+        "dest_path": "object_detection",
+        "label_url": "https://github.com/arunponnusamy/object-detection-opencv/raw/master/yolov3.txt",
+        "label_name" : "yolo_classes.txt"
+    },
+
+    "Gender":{
+        "model_name" : "gender_net.caffemodel",
+        "model_url" : "https://github.com/arunponnusamy/cvlib-files/releases/download/v0.1/gender_net.caffemodel",
+        "cfg_name" : "gender_deploy.prototxt",
+        "cfg_url" : "https://download.cvlib.net/config/gender_detection/gender_deploy.prototxt",
+        "dest_path": "gender_detection"
+    },
+
+    "Keypoint":{
+        "model_name" : "shape_predictor_68_face_landmarks.dat.bz2",
+        "model_url" : "https://github.com/davisking/dlib-models/blob/master/shape_predictor_68_face_landmarks.dat.bz2?raw=True",
+        "dest_path": "keypoint"
+    }
+}
