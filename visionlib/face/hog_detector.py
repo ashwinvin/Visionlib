@@ -35,4 +35,4 @@ class Hog_detector:
                 h = face.bottom()
                 box_lst.append([x, y, w, h])
                 confidences.append(None)
-            return box_lst, confidences
+            return [None, None] if (None in box_lst) else [box_lst, confidences]

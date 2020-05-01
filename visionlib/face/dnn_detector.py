@@ -57,6 +57,6 @@ class DnnDetector:
                 box_lst.append([startX, startY, endX, endY])
                 confidences.append(conf)
 
-            return box_lst, confidences
+            return [None, None] if (None in box_lst) else [box_lst, confidences]
         else:
             raise Exception("No image received ".format(img))

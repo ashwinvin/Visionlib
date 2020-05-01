@@ -37,4 +37,4 @@ class MTCNNDetector(object):
                 box_lst.append([x, y, w + x, h + y])
                 conf = face['confidence']
                 confidences.append(conf)
-            return box_lst, confidences
+            return [None, None] if (None in box_lst) else [box_lst, confidences]

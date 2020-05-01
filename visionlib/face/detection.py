@@ -8,6 +8,7 @@ from .hog_detector import Hog_detector
 from .dnn_detector import DnnDetector
 from .mtcnn_detector import MTCNNDetector
 
+
 class FDetector:
     """This class contains all functions to detect face in an image.
                 . . .
@@ -36,7 +37,7 @@ class FDetector:
         self.set_detector()
         self.img = None
 
-    def set_detector(self, detector='dnn'):
+    def set_detector(self, detector="dnn"):
         """
         This method is used to set detector to be used to detect
         faces in an image.
@@ -52,7 +53,7 @@ class FDetector:
             self.detector = Hog_detector()
         elif detector == "mtcnn":
             self.detector = MTCNNDetector()
-        elif detector == 'dnn':
+        elif detector == "dnn":
             self.detector = DnnDetector()
 
     def detect_face(self, img=None, show=False, enable_gpu=False):
@@ -102,8 +103,8 @@ class FDetector:
         else:
             raise Exception("No Arguments given")
 
-    def vdetect_face(self, vid_path=None, show=False, enable_gpu=False):
-        '''This method is used to detect face in an video
+    def vdetect_face(self, vid_path=None, show=False, enable_gpu=False, url=False):
+        """This method is used to detect face in an video
 
         Args:
             vid_path (str):
@@ -121,24 +122,35 @@ class FDetector:
             confidences (list) :
                 Returns the associated confidences for
                 the detected face.
-        '''
-        vid = self.image_util.read_video(vid_path)
+        """
+        if url:
+            vid = cv2.VideoCapture(vid_path)
+        else:
+            vid = self.image_util.read_video(vid_path)
         while True:
             status, img = vid.read()
-            frame = img
-            box, confidences = self.detector.detect(img=frame, enable_gpu=enable_gpu)
+            box, confidences = self.detector.detect(img=img, enable_gpu=enable_gpu)
+            frame = None
+            conf = None
             if box is not None:
+                frame = img
                 for face, conf in zip(box, confidences):
-                    frame = cv2.rectangle(frame, (face[0], face[1]),
-                                          (face[2], face[3]), (0, 255, 0), 2)
+                    frame = cv2.rectangle(
+                        frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
+                    )
 
-                    if conf is not None:
-                        conf = str(int(conf * 100))
-
-                    yield [frame, None, None] if (frame is None) else [frame, box, conf]
+                    if None not in confidences:
+                        # print(confidences)
+                        confidences = [float(x) * 10 for x in confidences]
 
             if show is True:
                 cv2.imshow("Visionlib", frame)
-                yield [frame, None, None] if (frame is None) else [frame, box, conf]
+                yield [img, None, None] if (frame is None) else [
+                    frame,
+                    box,
+                    confidences,
+                ]
                 if cv2.waitKey(1) & 0xFF == ord("q"):
                     break
+
+            yield [img, None, None] if (frame is None) else [frame, box, confidences]

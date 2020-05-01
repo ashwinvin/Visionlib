@@ -2,6 +2,7 @@ import cv2
 from ..utils.imgutils import Image
 import logging
 
+
 class HaarDetector:
     def __init__(self):
         self._haar_cascades = cv2.CascadeClassifier(
@@ -34,4 +35,5 @@ class HaarDetector:
             for (x, y, w, h) in detected_img:
                 box_lst.append([x, y, w + x, h + y])
                 confidences.append(None)
-                return box_lst, confidences
+                # return box_lst, confidences
+            return [None, None] if (None in box_lst) else [box_lst, confidences]
