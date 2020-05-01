@@ -1,9 +1,9 @@
-import wget
-import logging
-import os
-import json
 from pkg_resources import resource_filename, Requirement
-
+import logging
+import json
+import wget
+import pafy
+import os
 
 class web:
     def __init__(self):
@@ -90,3 +90,11 @@ class web:
                     raise Exception(e)
 
         return paths
+
+    def load_video(self, url=None):
+        if url is not None:
+            content = pafy.new(url)
+            video = content.getbestvideo(preftype='webm')
+            return video.url
+        else:
+            raise Exception("No url given")
