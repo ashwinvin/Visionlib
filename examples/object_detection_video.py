@@ -1,9 +1,9 @@
-from visionlib.object.detection import Detection
+from visionlib.object.detection.detection import ODetection
 import argparse
 import cv2
 
 # Instantiating the required classes.
-detector = Detection()
+detector = ODetection()
 # Configre the parser.
 parser = argparse.ArgumentParser()
 parser.add_argument("vid_path", help="Path to image")
@@ -15,7 +15,7 @@ parser.add_argument("--enable-gpu", help="Set to true to enable gpu support",
 args = parser.parse_args()
 
 if args.cfg_path is None or args.model_path is None:
-    detector.set_detector(model_name="yolo")
+    detector.set_detector(model_name="Tiny-yolov3")
 else:
     detector.set_detector(model_path=args.model_path, cfg_path=args.cfg_path, 
                           label_path=args.label_path)

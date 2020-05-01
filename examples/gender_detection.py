@@ -31,5 +31,5 @@ for box in boxes:
     cv2.putText(
         d_img, label, (box[0], Y), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2
     )
-    cv2.imshow("pic2", img)
-    cv2.waitKey(0)
+cv2.imshow("pic2", img)
+cv2.waitKey(0)

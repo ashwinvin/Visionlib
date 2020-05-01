@@ -1,10 +1,10 @@
-from visionlib.object.detection import Detection
+from visionlib.object.detection.detection import ODetection
 import argparse
 import cv2
 
 # Instantiating the required classes.
-detector = Detection()
-detector.set_detector("tiny_yolo")
+detector = ODetection()
+detector.set_detector("Yolov3")
 # Configre the parser.
 parser = argparse.ArgumentParser()
 parser.add_argument("img_path", help="Path to image")
@@ -18,7 +18,8 @@ args = parser.parse_args()
 img = cv2.imread(args.img_path)
 # Detect the detect_objects
 if args.cfg_path is None or args.model_path is None:
-    detector.set_detector(model_name="yolo")
+    # detector.set_detector(model_name="yolo")
+    pass
 else:
     detector.set_detector(model_path=args.model_path, cfg_path=args.cfg_path, 
                           label_path=args.label_path)

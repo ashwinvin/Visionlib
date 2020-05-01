@@ -17,6 +17,5 @@ img = cv2.imread(args.img_path)
 detector.set_detector("hog")
 # Apply face detection and show image
 d_img, boxes, conf = detector.detect_face(img, show=True, enable_gpu=args.enable_gpu)
-for box in boxes:
-    # print(conf)
-    print(box)
+for box, conf in zip(boxes, conf):
+    print(box, conf)
