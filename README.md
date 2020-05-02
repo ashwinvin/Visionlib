@@ -1,7 +1,7 @@
-![Upload Python Package](https://github.com/ashwinvin/Visionlib/workflows/Upload%20Python%20Package/badge.svg?branch=v1.3.0)
 ![logo](docs/images/logo(1).jpg)
 
 # Visionlib
+![Upload Python Package](https://github.com/ashwinvin/Visionlib/workflows/Upload%20Python%20Package/badge.svg?branch=v1.3.0)
 
 A simple high level api made for assisting in cv-related projects.
 
@@ -103,7 +103,8 @@ You can leverage your gpu's power by enabling it like this.
 **Gender Detection**
 `detector.detect_gender(img, enable_gpu=True)`
 
-**Note:** GPU is support in face detection is only compatible with DNN detector and you should cuda installed.
+**Note:** GPU is support in face detection is only compatible with DNN detector and you should
+have cuda installed.
 
 #### Example
 

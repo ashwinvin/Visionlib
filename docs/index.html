@@ -84,6 +84,8 @@
 <li><a class="reference internal" href="#face-detection">Face Detection</a></li>
 <li><a class="reference internal" href="#gender-detection">Gender Detection</a></li>
 <li><a class="reference internal" href="#object-detection">Object Detection</a></li>
+<li><a class="reference internal" href="#object-classification">Object Classification</a></li>
+<li><a class="reference internal" href="#keypoint-detection">Keypoint Detection</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </div>
@@ -187,20 +189,20 @@ will use dnn detector as default.</p>
 <dd><p>This method is used to detect face in an image.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>img (numpy array) :</dt><dd><p>This argument must the output which similar to
+<dt>img (numpy array)</dt><dd><p>This argument must the output which similar to
 opencv’s imread method’s output.</p>
 </dd>
-<dt>show (bool) :</dt><dd><p>Set True to show image via cv2.imshow method.</p>
+<dt>show (bool)</dt><dd><p>Set True to show image via cv2.imshow method.</p>
 </dd>
 </dl>
 </dd>
 <dt>Returns:</dt><dd><dl class="simple">
-<dt>img (np.array) :</dt><dd><p>Returns a numpy array of the image with bounding box.</p>
+<dt>img (np.array)</dt><dd><p>Returns a numpy array of the image with bounding box.</p>
 </dd>
-<dt>box (list) :</dt><dd><p>Returns x, y, w, h coordinates of the detected face
+<dt>box (list)</dt><dd><p>Returns x, y, w, h coordinates of the detected face
 Returns an empty list if no face is detected.</p>
 </dd>
-<dt>confidences (list) :</dt><dd><p>Returns the associated confidences for
+<dt>confidences (list)</dt><dd><p>Returns the associated confidences for
 the detected face.</p>
 </dd>
 </dl>
@@ -215,7 +217,7 @@ the detected face.</p>
 faces in an image.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>detector (str) :</dt><dd><p>The detector to be used. Can be any of the following:
+<dt>detector (str)</dt><dd><p>The detector to be used. Can be any of the following:
 haar, hog, mtcnn, dnn. Dnn will be used as default.</p>
 </dd>
 </dl>
@@ -225,24 +227,23 @@ haar, hog, mtcnn, dnn. Dnn will be used as default.</p>
 
 <dl class="py method">
 <dt id="visionlib.face.detection.FDetector.vdetect_face">
-<code class="sig-name descname">vdetect_face</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vid_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.face.detection.FDetector.vdetect_face" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">vdetect_face</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vid_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">url</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.face.detection.FDetector.vdetect_face" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to detect face in an video</p>
-<dl class="simple">
+<dl>
 <dt>Args:</dt><dd><dl class="simple">
-<dt>vid_path (str):</dt><dd><p>Absolute Path to the video file.</p>
+<dt>vid_path (str)</dt><dd><p>Absolute Path to the video file.</p>
 </dd>
-<dt>show (bool):</dt><dd><p>Set True to show image via cv2.imshow method.</p>
+<dt>show (bool)</dt><dd><p>Set True to show image via cv2.imshow method.</p>
 </dd>
 </dl>
 </dd>
-<dt>Yields:</dt><dd><dl class="simple">
-<dt>img (np.array) :</dt><dd><p>Returns a numpy array of the image with bounding box.
-ONLY given when show is set to True</p>
-</dd>
-<dt>box (list) :</dt><dd><p>Returns x, y, w, h coordinates of the detected face
+<dt>Yields:</dt><dd><dl>
+<dt>img (np.array)</dt><dd><p>Returns a numpy array of the image with bounding box.</p>
+<p>box (list)
+Returns x, y, w, h coordinates of the detected face
 Returns an empty list if no face is detected.</p>
 </dd>
-<dt>confidences (list) :</dt><dd><p>Returns the associated confidences for
+<dt>confidences (list)</dt><dd><p>Returns the associated confidences for
 the detected face.</p>
 </dd>
 </dl>
@@ -299,8 +300,8 @@ opencv’s imread method’s output.</p>
 <div class="section" id="object-detection">
 <h1>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="visionlib.object.detection.Detection">
-<em class="property">class </em><code class="sig-prename descclassname">visionlib.object.detection.</code><code class="sig-name descname">Detection</code><a class="headerlink" href="#visionlib.object.detection.Detection" title="Permalink to this definition">¶</a></dt>
+<dt id="visionlib.object.detection.detection.ODetection">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.object.detection.detection.</code><code class="sig-name descname">ODetection</code><a class="headerlink" href="#visionlib.object.detection.detection.ODetection" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>This class contains all functions to detect objects from an image.</dt><dd><p>…</p>
 </dd>
@@ -324,8 +325,8 @@ will use tiny yolo as default.</p>
 </div></blockquote>
 </div></blockquote>
 <dl class="py method">
-<dt id="visionlib.object.detection.Detection.detect_objects">
-<code class="sig-name descname">detect_objects</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frame</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.Detection.detect_objects" title="Permalink to this definition">¶</a></dt>
+<dt id="visionlib.object.detection.detection.ODetection.detect_objects">
+<code class="sig-name descname">detect_objects</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frame</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.detection.ODetection.detect_objects" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to detect objects in an image.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
@@ -348,8 +349,8 @@ will use tiny yolo as default.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="visionlib.object.detection.Detection.draw_bbox">
-<code class="sig-name descname">draw_bbox</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span></em>, <em class="sig-param"><span class="n">bbox</span></em>, <em class="sig-param"><span class="n">labels</span></em>, <em class="sig-param"><span class="n">confidence</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.Detection.draw_bbox" title="Permalink to this definition">¶</a></dt>
+<dt id="visionlib.object.detection.detection.ODetection.draw_bbox">
+<code class="sig-name descname">draw_bbox</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span></em>, <em class="sig-param"><span class="n">bbox</span></em>, <em class="sig-param"><span class="n">labels</span></em>, <em class="sig-param"><span class="n">confidence</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.detection.ODetection.draw_bbox" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw’s Box around the detected objects.</p>
 <dl class="simple">
 <dt>Args</dt><dd><dl class="simple">
@@ -364,7 +365,7 @@ will use tiny yolo as default.</p>
 </dl>
 </dd>
 <dt>Returns</dt><dd><dl class="simple">
-<dt>numpy.array<span class="classifier"></span></dt><dd><p>The image with bounding boxes and labels.</p>
+<dt>numpy.array :</dt><dd><p>The image with bounding boxes and labels.</p>
 </dd>
 </dl>
 </dd>
@@ -372,8 +373,8 @@ will use tiny yolo as default.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="visionlib.object.detection.Detection.set_detector">
-<code class="sig-name descname">set_detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span><span class="o">=</span><span class="default_value">'tiny_yolo'</span></em>, <em class="sig-param"><span class="n">model_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cfg_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">label_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.Detection.set_detector" title="Permalink to this definition">¶</a></dt>
+<dt id="visionlib.object.detection.detection.ODetection.set_detector">
+<code class="sig-name descname">set_detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span><span class="o">=</span><span class="default_value">'tiny_yolo'</span></em>, <em class="sig-param"><span class="n">model_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cfg_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">label_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.detection.detection.ODetection.set_detector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set’s the detector to use. Can be tiny-yolo or yolo.
 Setting to tiny-yolo will use yolov3-tiny.
 Setting to yolo will use yolov3.</p>
@@ -390,6 +391,252 @@ You want to load is.</p>
 </dd>
 <dt>label_path (str):</dt><dd><p>Set this to path where the labels file for custom model,
 You want to load is.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="object-classification">
+<h1>Object Classification<a class="headerlink" href="#object-classification" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="visionlib.object.classifier.inception_detector.Inception">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.object.classifier.inception_detector.</code><code class="sig-name descname">Inception</code><a class="headerlink" href="#visionlib.object.classifier.inception_detector.Inception" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is used to classify images
+using pre-trained Inception_v3 model.</p>
+<p>Methods:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>predict()</dt><dd><p>Used to predict the classes from the image.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt id="visionlib.object.classifier.inception_detector.Inception.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">top</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.classifier.inception_detector.Inception.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to predict the possible classes in
+the image.</p>
+<dl class="simple">
+<dt>Args</dt><dd><dl class="simple">
+<dt>img (numpy array)</dt><dd><p>The image for detecting classes</p>
+</dd>
+<dt>top (int)</dt><dd><p>The top n classes detected by the model
+to return</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns</dt><dd><dl class="simple">
+<dt>list</dt><dd><p>Returns a list of tuples with first value
+is the detected class and second value is
+the confidence in each tuple.
+eg: [(‘coffee_mug’, 88.80746364593506), (‘cup’, 9.322341531515121)]</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises</dt><dd><dl class="simple">
+<dt>AssertionError</dt><dd><p>Raised when no image is given</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="visionlib.object.classifier.xception_detector.Xceptionv1">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.object.classifier.xception_detector.</code><code class="sig-name descname">Xceptionv1</code><a class="headerlink" href="#visionlib.object.classifier.xception_detector.Xceptionv1" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is used to classify images
+using pre-trained Xception_v1 model.</p>
+<p>Methods:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>predict()</dt><dd><p>Used to predict the classes from the image.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt id="visionlib.object.classifier.xception_detector.Xceptionv1.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span></em>, <em class="sig-param"><span class="n">top</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.classifier.xception_detector.Xceptionv1.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to predict the possible classes in
+the image.</p>
+<dl class="simple">
+<dt>Args</dt><dd><dl class="simple">
+<dt>img (numpy array)</dt><dd><p>The image for detecting classes</p>
+</dd>
+<dt>top (int)</dt><dd><p>The top n classes detected by the model
+to return</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns</dt><dd><dl class="simple">
+<dt>list</dt><dd><p>Returns a list of tuples with first value
+is the detected class and second value is
+the confidence in each tuple.
+eg: [(‘coffee_mug’, 88.80746364593506), (‘cup’, 9.322341531515121)]</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises</dt><dd><dl class="simple">
+<dt>AssertionError</dt><dd><p>Raised when no image is given</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="visionlib.object.classifier.vgg_detector.VGG">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.object.classifier.vgg_detector.</code><code class="sig-name descname">VGG</code><a class="headerlink" href="#visionlib.object.classifier.vgg_detector.VGG" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is used to classify images
+using pre-trained vgg16 model.</p>
+<p>Methods:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>predict()</dt><dd><p>Used to predict the classes from the image.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt id="visionlib.object.classifier.vgg_detector.VGG.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">top</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.classifier.vgg_detector.VGG.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to predict the possible classes in
+the image.</p>
+<dl class="simple">
+<dt>Args</dt><dd><dl class="simple">
+<dt>img (numpy array)</dt><dd><p>The image for detecting classes</p>
+</dd>
+<dt>top (int)</dt><dd><p>The top n classes detected by the model
+to return</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns</dt><dd><dl class="simple">
+<dt>list</dt><dd><p>Returns a list of tuples with first value
+is the detected class and second value is
+the confidence in each tuple.
+eg: [(‘coffee_mug’, 88.80746364593506), (‘cup’, 9.322341531515121)]</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises</dt><dd><dl class="simple">
+<dt>AssertionError</dt><dd><p>Raised when no image is given</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="visionlib.object.classifier.detection.CDetector">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.object.classifier.detection.</code><code class="sig-name descname">CDetector</code><a class="headerlink" href="#visionlib.object.classifier.detection.CDetector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="visionlib.object.classifier.detection.CDetector.set_detector">
+<code class="sig-name descname">set_detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">detector</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.object.classifier.detection.CDetector.set_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to set detector to be used to predict the
+classe in an image.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>detector (str) :</dt><dd><p>The detector to be used. Can be any of the following:
+inception, xception, vgg. inception will be used as default.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="keypoint-detection">
+<h1>Keypoint Detection<a class="headerlink" href="#keypoint-detection" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="visionlib.keypoints.detection.KDetector">
+<em class="property">class </em><code class="sig-prename descclassname">visionlib.keypoints.detection.</code><code class="sig-name descname">KDetector</code><a class="headerlink" href="#visionlib.keypoints.detection.KDetector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This class contains functions for getting</dt><dd><p>keypoints for a space</p>
+</dd>
+</dl>
+<p>Methods</p>
+<blockquote>
+<div><dl class="simple">
+<dt>set_detector()</dt><dd><p>Set the detector to detect keypoints</p>
+</dd>
+<dt>detect_keypoints()</dt><dd><p>Detect the keypoints in a face.</p>
+</dd>
+<dt>draw_points()</dt><dd><p>Draws the detected points in an image</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt id="visionlib.keypoints.detection.KDetector.detect_keypoints">
+<code class="sig-name descname">detect_keypoints</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span></em>, <em class="sig-param"><span class="n">rects</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">enable_gpu</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.keypoints.detection.KDetector.detect_keypoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to detect keypoints.</p>
+<dl class="simple">
+<dt>Args</dt><dd><dl class="simple">
+<dt>img (numpy array)</dt><dd><p>The image for detection.</p>
+</dd>
+<dt>rects (list)</dt><dd><p>The coordinates of face. (Not Needed for mtcnn detector)</p>
+</dd>
+<dt>enable_gpu (bool):</dt><dd><p>Set to True if you want to use gpu</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns</dt><dd><dl class="simple">
+<dt>list</dt><dd><p>Returns detected keypoint for each face</p>
+</dd>
+<dt>img</dt><dd><p>Returned only when no face is there for detection.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="visionlib.keypoints.detection.KDetector.draw_points">
+<code class="sig-name descname">draw_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span></em>, <em class="sig-param"><span class="n">points</span></em>, <em class="sig-param"><span class="n">show</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">0, 50, 255</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.keypoints.detection.KDetector.draw_points" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This function is used to draw the detected points</dt><dd><p>into the image.</p>
+</dd>
+<dt>Args</dt><dd><dl class="simple">
+<dt>img (numpy array)</dt><dd><p>The image for drawing.</p>
+</dd>
+<dt>points (list)</dt><dd><p>The coordinates of the keypoints</p>
+</dd>
+<dt>show (bool)</dt><dd><p>Set to true if you want to display the image</p>
+</dd>
+<dt>color (tuple)</dt><dd><p>The color to display the points in.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns</dt><dd><dl class="simple">
+<dt>numpy array</dt><dd><p>The image with keypoints marked</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="visionlib.keypoints.detection.KDetector.set_detector">
+<code class="sig-name descname">set_detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">detector</span></em><span class="sig-paren">)</span><a class="headerlink" href="#visionlib.keypoints.detection.KDetector.set_detector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This function is used to set the detector</dt><dd><p>to detect keypoints.</p>
+</dd>
+<dt>Args</dt><dd><dl class="simple">
+<dt>detector (str)</dt><dd><p>Can be ‘dlib’ or ‘mtcnn’.</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises</dt><dd><dl class="simple">
+<dt>Invalid Selection</dt><dd><p>Raised when the selection is invalid</p>
 </dd>
 </dl>
 </dd>
