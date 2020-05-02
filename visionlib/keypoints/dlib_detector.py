@@ -39,7 +39,12 @@ class DlibDetector:
             coords[i] = (detected.part(i).x, detected.part(i).y)
         return coords
 
-    def detect(self, img, rects):
+    def detect(self, img, rects, enable_gpu=False):
+        if enable_gpu:
+            if dlib.cuda.get_num_devices() != 1:
+                dlib.DLIB_USE_CUDA = True
+            else:
+                logging.fatal("No gpu is detected")
         rects2, points = [], []
         for rect in rects:
             rects2.append(dlib.rectangle(rect[0], rect[1], rect[2], rect[3]))

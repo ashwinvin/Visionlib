@@ -42,7 +42,7 @@ class KDetector:
         else:
             raise Exception("Invalid Selection")
 
-    def detect_keypoints(self, img, rects=None):
+    def detect_keypoints(self, img, rects=None, enable_gpu=False):
         """This function is used to detect keypoints.
 
         Args
@@ -51,6 +51,9 @@ class KDetector:
 
             rects (list)
                 The coordinates of face. (Not Needed for mtcnn detector)
+
+            enable_gpu (bool):
+                Set to True if you want to use gpu
 
         Returns
             list
@@ -63,7 +66,7 @@ class KDetector:
             logging.fatal("No face coordinates given aborting detection")
             return img
         else:
-            points = self.detector.detect(img, rects)
+            points = self.detector.detect(img, rects, enable_gpu)
             return points
 
     def draw_points(self, img, points, show=False, color=(0, 50, 255)):

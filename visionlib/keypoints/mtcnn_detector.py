@@ -5,7 +5,7 @@ class MTCNNDetector:
     def __init__(self):
         self.model = MTCNN()
 
-    def detect(self, img, rects):
+    def detect(self, img, rects, enable_gpu):
         detected = self.model.detect_faces(img)
         faces, points = [], []
         for face in detected:
