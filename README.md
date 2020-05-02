@@ -157,8 +157,6 @@ You can leverage your gpu's power by enabling it like this.
 **Gender Detection**
 `detector.detect_gender(img, enable_gpu=True)`
 
-**urlNote:** GPU is support in face detection is only compatible with DNN detector and you should
-have cuda installed.
 
 #### Loading videos from YouTube
 
