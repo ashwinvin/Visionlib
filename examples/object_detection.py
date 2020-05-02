@@ -28,5 +28,5 @@ print(box, label, conf)
 # Draw boxes on image
 dimg = detector.draw_bbox(img, box, label, conf)
 # show image
-cv2.imshow("pic2", dimg)
+cv2.imshow("Object Detection using Visionlib", dimg)
 cv2.waitKey(0)
