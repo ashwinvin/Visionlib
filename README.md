@@ -113,7 +113,7 @@ predictions = detector.predict(img)
 
 #### Example
 
-![mug](/home/ashwin/visionlib/docs/images/mug.jpg)
+![mug](docs/images/mug.jpg)
 
 ##### Output
 
@@ -142,7 +142,7 @@ points = kdetector.detect_keypoints(img, rects=boxes)
 
 #### Example
 
-![](/home/ashwin/visionlib/docs/images/keypoint_detected.jpg)
+![keypoint detected](docs/images/keypoint_detected.jpg)
 
 #### GPU support
 
