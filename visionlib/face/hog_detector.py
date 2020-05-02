@@ -11,11 +11,15 @@ class Hog_detector:
         """
         Detect faces using dlibs hog based detector.
 
-        Args:
-            img_path: Path to the image for detection
+        Args
+            img (numpy array)
+                The image for detection
 
-        Returns:
-                box_lst : A list of list
+            enable_gpu (bool)
+                Set to true to use gp support
+
+        Returns
+                box_lst (A list of list)
                     Each element in list correspond to
                     x, y, w, h of bounding box respectively.
         """
@@ -24,7 +28,10 @@ class Hog_detector:
             raise Exception("No image received ".format(img))
         else:
             if enable_gpu:
-                logging.warning("GPU is not supported for hog detector")
+                if dlib.cuda.get_num_devices() != 0:
+                    dlib.DLIB_USE_CUDA = True
+                else:
+                    logging.fatal("No gpu detected")
             detected_img = self._dlib_hog_model(d_img, 1)
             box_lst = []
             confidences = []

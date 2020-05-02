@@ -14,11 +14,12 @@ class HaarDetector:
         """
         Detect faces using opencv's haar based detector.
 
-        Args:
-            img_path: Path to the image for detection
+        Args
+            img (numpy array)
+                The image for detection
 
-        Returns:
-                box_lst : A list of list
+        Returns
+                    box_lst (A list of list)
                     Each element in list correspond to
                     x, y, w, h of bounding box respectively.
         """

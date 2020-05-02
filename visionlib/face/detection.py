@@ -43,7 +43,7 @@ class FDetector:
         faces in an image.
 
         Args:
-            detector (str) :
+            detector (str)
                 The detector to be used. Can be any of the following:
                 haar, hog, mtcnn, dnn. Dnn will be used as default.
         """
@@ -60,22 +60,22 @@ class FDetector:
         """This method is used to detect face in an image.
 
         Args:
-            img (numpy array) :
+            img (numpy array)
                 This argument must the output which similar to
                 opencv's imread method's output.
 
-            show (bool) :
+            show (bool)
                 Set True to show image via cv2.imshow method.
 
         Returns:
-            img (np.array) :
+            img (np.array)
                 Returns a numpy array of the image with bounding box.
 
-            box (list) :
+            box (list)
                 Returns x, y, w, h coordinates of the detected face
                 Returns an empty list if no face is detected.
 
-            confidences (list) :
+            confidences (list)
                 Returns the associated confidences for
                 the detected face.
 
@@ -90,15 +90,16 @@ class FDetector:
                         img, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
                     )
 
-                    if conf is not None:
-                        conf = str(int(conf * 100))
+                    if None not in confidences:
+                        # print(confidences)
+                        confidences = [float(x) * 10 for x in confidences]
 
             if show is True:
                 cv2.imshow("Visionlib", frame)
                 cv2.waitKey(0)
                 return [frame, box, conf]
             else:
-                return [img, None, None] if (frame is None) else [frame, box, conf]
+                return [img, None, None] if (frame is None) else [frame, box, confidences]
 
         else:
             raise Exception("No Arguments given")
@@ -107,19 +108,20 @@ class FDetector:
         """This method is used to detect face in an video
 
         Args:
-            vid_path (str):
+            vid_path (str)
                 Absolute Path to the video file.
 
-            show (bool):
+            show (bool)
                 Set True to show image via cv2.imshow method.
         Yields:
-            img (np.array) :
+            img (np.array)
                 Returns a numpy array of the image with bounding box.
-                ONLY given when show is set to True
-            box (list) :
+
+                box (list)
                 Returns x, y, w, h coordinates of the detected face
                 Returns an empty list if no face is detected.
-            confidences (list) :
+
+            confidences (list)
                 Returns the associated confidences for
                 the detected face.
         """
@@ -139,12 +141,14 @@ class FDetector:
                         frame, (face[0], face[1]), (face[2], face[3]), (0, 255, 0), 2
                     )
 
-                    if None not in confidences:
-                        # print(confidences)
-                        confidences = [float(x) * 10 for x in confidences]
+                if None not in confidences:
+                    confidences = [float(x) * 10 for x in confidences]
 
             if show is True:
-                cv2.imshow("Visionlib", frame)
+                if frame is not None:
+                    cv2.imshow("Visionlib", frame)
+                else:
+                    cv2.imshow("Visionlib", img)
                 yield [img, None, None] if (frame is None) else [
                     frame,
                     box,

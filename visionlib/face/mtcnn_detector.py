@@ -11,13 +11,15 @@ class MTCNNDetector(object):
         """
         Detect faces using mtcnn based detector.
 
-        Args:
-            img_path: Path to the image for detection
+        Args
+            img (numpy array)
+                The image for detection
 
-        Returns:
+        Returns
                 box_lst : A list of list
                     Each element in list correspond to
                     x, y, w, h of bounding box respectively.
+                    eg:
         [{'box': [285, 89, 175, 218], 'confidence': 0.996926486492157,
         """
         m_img = img

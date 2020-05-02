@@ -23,13 +23,17 @@ class DnnDetector:
         Uses res10_300x300_ssd_iter_140000.
 
         Args:
-            img: Image for detection
-            enable_gpu (bool) : Set to True if You want to use gpu
-                    for prediction.
-            threshold (int): Min confidence for selecting the face.
+            img (nmpy array)
+                Image for detection
 
-        Returns:
-                box_lst : A list of list
+            enable_gpu (bool)
+                     Set to True if You want to use gpu for prediction.
+
+            threshold (int)
+                Min confidence for selecting the face.
+
+        Returns
+                box_lst (A list of list)
                     Each element in list correspond to
                     x, y, w, h of bounding box respectively.
         """
