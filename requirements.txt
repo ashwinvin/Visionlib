@@ -3,3 +3,5 @@ tensorflow
 numpy
 mtcnn
 dlib
+pafy
+youtube-dl
