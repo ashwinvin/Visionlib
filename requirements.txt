@@ -5,3 +5,4 @@ mtcnn
 dlib
 pafy
 youtube-dl
+keras
