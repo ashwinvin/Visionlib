@@ -17,6 +17,15 @@ A simple high level API made for assisting in CV-related projects.
   - Yolo v3
   - tiny-yolo
 
+- Classify Images 
+  - VGG 16
+  - Inception v3
+  - Xception
+
+- Detect Facial Keypoints
+  - MTCNN
+  - Dlib 68 point shape detector
+
 ### Installation
 
 **Note:** Windows compatibility is not tested
@@ -162,7 +171,7 @@ You can leverage your gpu's power by enabling it like this.
 
 If you want load videos from YouTube, you can use the  `load_video()`function.
 
-```
+```python
 from visionlib.utils.webutils import web
 web_util = web()
 video = web.load_video(url)

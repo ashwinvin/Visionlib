@@ -13,7 +13,7 @@ setuptools.setup(
     author_email="ashwinvinodsa@gmail.com",
     url="https://github.com/ashwinvin/Visionlib",
     download_url="https://github.com/ashwinvin/Visionlib/archive/v1.4.5.tar.gz",
-    description="A simple, easy to use and customizeble cv library ",
+    description="    ",
     long_description=long_description,
     long_description_content_type="text/markdown",
     keywords=["Deep learning", "Vision", "cv"],
