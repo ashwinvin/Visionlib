@@ -26,6 +26,12 @@ A simple high level API made for assisting in CV-related projects.
   - MTCNN
   - Dlib 68 point shape detector
 
+### TODO
+
+- [ ] Find a Pre-Trained model for pose estimation and implement.
+- [ ] Implement a motion detector preferably using Opencv
+- [ ]  Fix the unnecessary loading for TensorFlow
+
 ### Installation
 
 **Note:** Windows compatibility is not tested
