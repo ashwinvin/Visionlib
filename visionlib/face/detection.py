@@ -104,7 +104,7 @@ class FDetector:
         else:
             raise Exception("No Arguments given")
 
-    def vdetect_face(self, vid_path=None, show=False, enable_gpu=False, url=False):
+    def vdetect_face(self, vid_path=None, show=False, enable_gpu=False, url=False, cam=False):
         """This method is used to detect face in an video
 
         Args:
@@ -127,6 +127,8 @@ class FDetector:
         """
         if url:
             vid = cv2.VideoCapture(vid_path)
+        elif cam is True:
+            vid = cv2.VideoCapture(int(vid_path))
         else:
             vid = self.image_util.read_video(vid_path)
         while True:
