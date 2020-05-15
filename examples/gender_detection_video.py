@@ -7,8 +7,11 @@ import argparse
 # Configre the parser.
 parser = argparse.ArgumentParser()
 parser.add_argument("vid_path", help="Path to image")
+parser.add_argument("--model", help="The model to use for detection", dest="model")
 parser.add_argument("--enable-gpu", help="Set to true to enable gpu support",
                     dest="enable_gpu", default=False, type=bool)
+parser.add_argument("--cam", help="Set to True if you are using webcam", dest="cam", 
+                    default=False, type=bool)
 args = parser.parse_args()
 
 # Instantiating the required classes.
@@ -16,9 +19,9 @@ detector = FDetector()
 Gdetector = GDetector()
 im_utils = Image()
 
-detector.set_detector("dnn")
+detector.set_detector(args.model)
 # Read the video
-detection = detector.vdetect_face(args.vid_path)
+detection = detector.vdetect_face(args.vid_path, cam=args.cam)
 run = True
 while run:
     # Get frames and bounding boxes of faces
