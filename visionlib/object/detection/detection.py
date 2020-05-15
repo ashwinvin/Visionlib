@@ -4,6 +4,7 @@ import os
 import sys
 import logging
 from visionlib.utils.webutils import web
+from visionlib.utils.imgutils import Image
 
 class ODetection:
     """This class contains all functions to detect objects from an image.
@@ -33,6 +34,7 @@ class ODetection:
         self.model_ln = None
         np.random.seed(62)
         self.web_util = web()
+        self.img_util = Image()
         self.min_confindence = 0.5
         self.threshold = 0.3
 
@@ -186,3 +188,27 @@ class ODetection:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
         return img
+
+    def extract_objects(self, img=None, boxes=None, sdir=None, labels=None):
+        i = 0
+        if img is not None and boxes is not None:
+            if labels is not None:
+                for box, label in zip(boxes, labels):
+                    ex_img = self.img_util.crop(img, box)
+                    if sdir is not None:
+                        save_name = "extracted_object_{0}_{1}.jpg".format(label, i)
+                        save_dir = os.path.join(sdir, save_name)
+                        logging.info("Writing image to {0}".format(save_dir))
+                        cv2.imwrite(save_dir, ex_img)
+                        i += 1
+                    yield ex_img
+            else:
+                for box in boxes:
+                    ex_img = self.img_util.crop(img, box)
+                    if sdir is not None:
+                        save_name = "extracted_object_{0}.jpg".format(i)
+                        save_dir = os.path.join(sdir, save_name)
+                        logging.info("Writing image to", sdir + save_name)
+                        cv2.imwrite(save_dir, ex_img)
+                        i += 1
+                    yield ex_img
