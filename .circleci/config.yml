@@ -16,7 +16,8 @@ jobs:
             sudo apt-get install build-essential cmake
             sudo apt-get install libopenblas-dev liblapack-dev 
             python -m pip install --upgrade pip
-            python3.6 -m pip install .
+            pyenv shell 3.6.5
+            pip install .
       - run:
           command: |
             cd tests
