@@ -7,6 +7,7 @@ jobs:
     working_directory: ~/visionlib
     steps:
       - checkout
+      - run: sudo apt-get install python3.6
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
