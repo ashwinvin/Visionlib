@@ -6,3 +6,4 @@ dlib
 pafy
 youtube-dl
 keras
+wget
