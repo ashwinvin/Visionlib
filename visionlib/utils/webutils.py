@@ -55,6 +55,11 @@ class web:
 
         paths = []
 
+        if os.path.exists(self.home_dir):
+            pass
+        else:
+            os.mkdir(self.home_dir)
+
         for url, name in zip(urls, names):
             fpath = self.home_dir + os.path.sep + dest_path + os.path.sep + name
             spath = self.home_dir + os.path.sep + dest_path
