@@ -12,7 +12,7 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install python3.6
       - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run: sudo chown -R circleci:circleci ~/.local/lib/python3.6/site-packages
       - restore_cache:
           key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
