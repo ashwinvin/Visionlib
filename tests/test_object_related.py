@@ -19,7 +19,7 @@ class TestData(unittest.TestCase):
 
     def setUp(self):
         logging.basicConfig(level=logging.INFO)
-        self.test_img_path = "tests/assets/object.jpeg"
+        self.test_img_path = "assets/object.jpeg"
         self.test_img = cv2.imread(self.test_img_path)
 
 

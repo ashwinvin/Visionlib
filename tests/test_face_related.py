@@ -22,7 +22,7 @@ class TestData(unittest.TestCase):
     def setUp(self):
         self.detectors = ["mtcnn", "haar", "hog", "dnn"]
         self.face_detector = FDetector()
-        self.group_img_path = "tests/assets/face.jpg"
+        self.group_img_path = "assets/face.jpg"
         self.test_img = cv2.imread(self.group_img_path)
         logging.basicConfig(level=logging.INFO)
 
