@@ -2,9 +2,9 @@ version: 2.1
 
 jobs:
   build:
+    machine:
+      image: ubuntu-1604:201903-01
     working_directory: ~/visionlib
-    docker:
-      - image: circleci/python:3.6.4
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
