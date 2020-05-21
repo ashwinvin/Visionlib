@@ -1,29 +1,23 @@
 version: 2.1
 
-orbs:
-  python: circleci/python@0.2.1
-
 jobs:
-  build-and-test:
-    executor: python/default
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
     working_directory: ~/visionlib
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-      - restore_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run: sudo apt-get install software-properties-common
+      - run: sudo add-apt-repository ppa:deadsnakes/ppa 
+      - run: sudo apt-get update
+      - run: sudo apt-get install python3.6
       - run:
           command: |
+            pyenv global 3.6.5
             sudo apt-get install build-essential cmake
             sudo apt-get install libopenblas-dev liblapack-dev 
             python -m pip install --upgrade pip
-            pip install .
-      - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
+            pip3 install -e . --progress-bar off
       - run:
           command: |
             cd tests
