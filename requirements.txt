@@ -1,8 +1,9 @@
 opencv-python
-# tensorflow
+tensorflow
 numpy
 mtcnn
 dlib
 pafy
 youtube-dl
 keras
+wget
