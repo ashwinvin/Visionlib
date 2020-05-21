@@ -3,8 +3,6 @@ version: 2.1
 jobs:
   build:
     machine:
-      python:
-        version: 3.6.5
       image: ubuntu-1604:201903-01
     working_directory: ~/visionlib
     steps:
@@ -12,13 +10,13 @@ jobs:
       - run: sudo apt-get install software-properties-common
       - run: sudo add-apt-repository ppa:deadsnakes/ppa 
       - run: sudo apt-get update
-#       - run: sudo apt-get install python3.6
+      - run: sudo apt-get install python3.6
       - run:
           command: |
             sudo apt-get install build-essential cmake
             sudo apt-get install libopenblas-dev liblapack-dev 
             python -m pip install --upgrade pip
-            pip3 install .
+            pip3 install -e .
       - run:
           command: |
             cd tests
