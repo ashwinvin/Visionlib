@@ -11,21 +11,12 @@ jobs:
       - run: sudo add-apt-repository ppa:deadsnakes/ppa 
       - run: sudo apt-get update
       - run: sudo apt-get install python3.6
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci ~/.local/lib/python3.6/site-packages
-      - restore_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           command: |
             sudo apt-get install build-essential cmake
             sudo apt-get install libopenblas-dev liblapack-dev 
             python -m pip install --upgrade pip
             pip install .
-      - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
       - run:
           command: |
             cd tests
