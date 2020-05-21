@@ -13,11 +13,11 @@ jobs:
       - run: sudo apt-get install python3.6
       - run:
           command: |
+            pyenv init
             sudo apt-get install build-essential cmake
             sudo apt-get install libopenblas-dev liblapack-dev 
             python -m pip install --upgrade pip
-            pyenv shell 3.6.5
-            pip install .
+            pip3 install .
       - run:
           command: |
             cd tests
