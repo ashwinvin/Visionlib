@@ -41,8 +41,8 @@ class ODetection:
     def set_detector(self, model_name='tiny_yolo', model_path=None, cfg_path=None,
                      label_path=None):
         '''Set's the detector to use. Can be tiny-yolo or yolo.
-        Setting to tiny-yolo will use yolov3-tiny.
-        Setting to yolo will use yolov3.
+        Setting to tiny-yolo will use Tiny-yolov3.
+        Setting to yolo will use Yolov3.
 
         Args:
             model_name (str):

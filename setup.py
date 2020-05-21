@@ -3,8 +3,8 @@ import setuptools
 with open("README.md", "r") as rd:
     long_description = rd.read()
 
-with open('requirements.txt', 'r') as rq:
-    requirements = rq.read().strip().split('\n')
+with open("requirements.txt", "r") as rq:
+    requirements = rq.read().strip().split("\n")
 
 setuptools.setup(
     name="visionlib",
@@ -13,10 +13,10 @@ setuptools.setup(
     author_email="ashwinvinodsa@gmail.com",
     url="https://github.com/ashwinvin/Visionlib",
     download_url="https://github.com/ashwinvin/Visionlib/archive/v1.4.5.tar.gz",
-    description="    ",
+    description="A simple high level API made for assisting in CV-related projects",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    keywords=["Deep learning", "Vision", "cv"],
+    keywords=["Deep learning", "Vision", "cv", "vision", "tensorflow"],
     packages=setuptools.find_packages(),
     include_package_data=True,
     classifiers=[
